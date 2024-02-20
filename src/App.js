@@ -3,6 +3,7 @@ import { Route, Routes, useParams } from "react-router-dom";
 import Palette from "./Palette";
 import seedColors from "./seedColors";
 import { generatePalette } from "./colorHelpers";
+import PaletteList from "./PaletteList";
 
 function PaletteWrapper() {
   const { id } = useParams(); // Now useParams has the context it needs
@@ -22,7 +23,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" exact element={<h1>PALETTE LIST GOES HERE</h1>} />
+        <Route path="/" exact element={<PaletteList palettes={seedColors} />} />
         <Route path="/palette/:id" exact element={<PaletteWrapper />} />
       </Routes>
 
