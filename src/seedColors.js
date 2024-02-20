@@ -22,8 +22,8 @@ export default [
       { name: "deeporange", color: "#FF5722" },
       { name: "brown", color: "#795548" },
       { name: "grey", color: "#9E9E9E" },
-      { name: "bluegrey", color: "#607D8B" }
-    ]
+      { name: "bluegrey", color: "#607D8B" },
+    ],
   },
   {
     paletteName: "Flat UI Colors v1",
@@ -49,8 +49,8 @@ export default [
       { name: "Pumpkin", color: "#d35400" },
       { name: "Pomegranate", color: "#c0392b" },
       { name: "Silver", color: "#bdc3c7" },
-      { name: "Asbestos", color: "#7f8c8d" }
-    ]
+      { name: "Asbestos", color: "#7f8c8d" },
+    ],
   },
   {
     paletteName: "Flat UI Colors Dutch",
@@ -76,13 +76,13 @@ export default [
       { name: "TurkishAqua", color: "#006266" },
       { name: "20000LeaguesUnderTheSea", color: "#1B1464" },
       { name: "CircumorbitalRing", color: "#5758BB" },
-      { name: "MagentaPurple", color: "#6F1E51" }
-    ]
+      { name: "MagentaPurple", color: "#6F1E51" },
+    ],
   },
   {
     paletteName: "Flat UI Colors American",
     id: "flat-ui-colors-american",
-    emoji: "🇺🇸",
+    emoji: "🦅",
     colors: [
       { name: "LightGreenishBlue", color: "#55efc4" },
       { name: "FadedPoster", color: "#81ecec" },
@@ -103,13 +103,13 @@ export default [
       { name: "OrangeVille", color: "#e17055" },
       { name: "Chi-Gong", color: "#d63031" },
       { name: "PrunusAvium", color: "#e84393" },
-      { name: "DraculaOrchid", color: "#2d3436" }
-    ]
+      { name: "DraculaOrchid", color: "#2d3436" },
+    ],
   },
   {
     paletteName: "Flat UI Colors Aussie",
     id: "flat-ui-colors-aussie",
-    emoji: "🇦🇺",
+    emoji: "🎉",
     colors: [
       { name: "Beekeeper", color: "#f6e58d" },
       { name: "SpicedNectarine", color: "#ffbe76" },
@@ -130,13 +130,13 @@ export default [
       { name: "SteelPink", color: "#be2edd" },
       { name: "Blurple", color: "#4834d4" },
       { name: "DeepCove", color: "#130f40" },
-      { name: "WizardGrey", color: "#535c68" }
-    ]
+      { name: "WizardGrey", color: "#535c68" },
+    ],
   },
   {
     paletteName: "Flat UI Colors British",
     id: "flat-ui-colors-british",
-    emoji: "🇬🇧",
+    emoji: "🎩",
     colors: [
       { name: "ProtossPylon", color: "#00a8ff" },
       { name: "Periwinkle", color: "#9c88ff" },
@@ -157,13 +157,13 @@ export default [
       { name: "HintOfPensive", color: "#dcdde1" },
       { name: "ChainGangGrey", color: "#718093" },
       { name: "PicoVoid", color: "#192a56" },
-      { name: "ElectroMagnetic", color: "#2f3640" }
-    ]
+      { name: "ElectroMagnetic", color: "#2f3640" },
+    ],
   },
   {
     paletteName: "Flat UI Colors Spanish",
     id: "flat-ui-colors-spanish",
-    emoji: "🇪🇸",
+    emoji: "💃",
     colors: [
       { name: "JacksonsPurple", color: "#40407a" },
       { name: "C64Purple", color: "#706fd3" },
@@ -184,13 +184,13 @@ export default [
       { name: "ChileanFire", color: "#cd6133" },
       { name: "GreyPorcelain", color: "#84817a" },
       { name: "AlamedaOchre", color: "#cc8e35" },
-      { name: "Desert", color: "#ccae62" }
-    ]
+      { name: "Desert", color: "#ccae62" },
+    ],
   },
   {
     paletteName: "Flat UI Colors Indian",
     id: "flat-ui-colors-indian",
-    emoji: "🇮🇳",
+    emoji: "🏏",
     colors: [
       { name: "OrchidOrange", color: "#FEA47F" },
       { name: "SpiroDiscoBall", color: "#25CCF7" },
@@ -211,13 +211,13 @@ export default [
       { name: "EndingNavyBlue", color: "#182C61" },
       { name: "SasquatchSocks", color: "#FC427B" },
       { name: "PineGlade", color: "#BDC581" },
-      { name: "HighlighterLavender", color: "#82589F" }
-    ]
+      { name: "HighlighterLavender", color: "#82589F" },
+    ],
   },
   {
     paletteName: "Flat UI Colors French",
     id: "flat-ui-colors-french",
-    emoji: "🇫🇷",
+    emoji: "🥖",
     colors: [
       { name: "FlatFlesh", color: "#fad390" },
       { name: "MelonMelody", color: "#f8c291" },
@@ -238,7 +238,7 @@ export default [
       { name: "JalapenoRed", color: "#b71540" },
       { name: "DarkSapphire", color: "#0c2461" },
       { name: "ForestBlues", color: "#0a3d62" },
-      { name: "ReefEncounter", color: "#079992" }
-    ]
-  }
+      { name: "ReefEncounter", color: "#079992" },
+    ],
+  },
 ];
