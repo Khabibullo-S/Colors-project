@@ -23,8 +23,13 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" exact element={<PaletteList palettes={seedColors} />} />
-        <Route path="/palette/:id" exact element={<PaletteWrapper />} />
+        <Route exact path="/" element={<PaletteList palettes={seedColors} />} />
+        <Route exact path="/palette/:id" element={<PaletteWrapper />} />
+        <Route
+          exact
+          path="/palette/:paletteId/:colorId"
+          element={<h1>SINGLE COLOR PAGE!</h1>}
+        />
       </Routes>
 
       {/* <Palette palette={generatePalette(seedColors[4])} /> */}
