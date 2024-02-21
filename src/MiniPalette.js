@@ -9,7 +9,7 @@ const Root = styled.div`
   padding: 0.5rem;
   position: relative;
   overflow: hidden;
-  &:hover: {
+  &:hover {
     cursor: pointer;
   }
 `;
@@ -24,7 +24,6 @@ const Title = styled.h5`
   margin: 0;
   color: black;
   padding-top: 0.5rem;
-  font-size: 1rem;
   position: relative;
 `;
 const Emoji = styled.span`
