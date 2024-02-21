@@ -7,8 +7,16 @@
   cursor: pointer;
   margin-bottom: -4.5px;
 }
+.SingleColorPalette .ColorBox {
+  height: 50%;
+}
 
-.copy-button {
+.ColorBox.go-back {
+  background-color: black;
+}
+
+.copy-button,
+.back-button {
   width: 100px;
   height: 30px;
   position: absolute;
@@ -24,7 +32,11 @@
   line-height: 30px;
   color: #fff;
   text-transform: uppercase;
+  text-decoration: none;
   border: none;
+}
+
+.copy-button {
   opacity: 0;
 }
 
