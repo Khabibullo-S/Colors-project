@@ -4,11 +4,9 @@ import styled from "@emotion/styled";
 
 const Root = styled.div`
   background-color: white;
-  border: 1px solid black;
   border-radius: 5px;
   padding: 0.5rem;
   position: relative;
-  overflow: hidden;
   &:hover {
     cursor: pointer;
   }

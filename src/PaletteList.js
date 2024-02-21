@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MiniPalette from "./MiniPalette";
 import styled from "@emotion/styled";
 
@@ -35,6 +35,7 @@ const Palettes = styled.div`
 `;
 
 const PaletteList = ({ palettes }) => {
+  const navigate = useNavigate();
   console.log(palettes);
   return (
     <Root>
@@ -44,7 +45,7 @@ const PaletteList = ({ palettes }) => {
         </Nav>
         <Palettes>
           {palettes.map((palette) => (
-            <div>
+            <div onClick={() => navigate(`/palette/${palette.id}`)}>
               <MiniPalette {...palette} />
             </div>
           ))}
