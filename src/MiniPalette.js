@@ -14,7 +14,11 @@ const Root = styled.div`
   }
 `;
 const Colors = styled.div`
-  background-color: grey;
+  height: 120px;
+  width: 100%;
+  background-color: #dae1e4;
+  border-radius: 5px;
+  overflow: hidden;
 `;
 
 const Title = styled.h5`
@@ -30,11 +34,25 @@ const Emoji = styled.span`
   margin-left: 0.5rem;
   font-size: 1.5rem;
 `;
+const MiniColor = styled.div`
+  height: 25%;
+  width: 20%;
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+  margin-bottom: -4px;
+`;
 
-const MiniPalette = ({ paletteName, emoji }) => {
+const MiniPalette = ({ paletteName, emoji, colors }) => {
+  const miniColorBoxes = colors.map((color) => (
+    <MiniColor
+      style={{ backgroundColor: color.color }}
+      key={color.name}
+    ></MiniColor>
+  ));
   return (
     <Root>
-      <Colors></Colors>
+      <Colors>{miniColorBoxes}</Colors>
       <Title>
         {paletteName} <span>{emoji}</span>
       </Title>
