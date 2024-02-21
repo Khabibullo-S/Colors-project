@@ -25,18 +25,20 @@ const Navbar = ({ level, setLevel, changeFormat }) => {
       <div className="logo">
         <Link to="/">reactcolorpicker</Link>
       </div>
-      <div className="slider-container">
-        <span>Level: {level}</span>
-        <div className="slider">
-          <Slider
-            defaultValue={level}
-            min={100}
-            max={900}
-            step={100}
-            onChangeComplete={setLevel}
-          />
+      {level && setLevel && (
+        <div className="slider-container">
+          <span>Level: {level}</span>
+          <div className="slider">
+            <Slider
+              defaultValue={level}
+              min={100}
+              max={900}
+              step={100}
+              onChangeComplete={setLevel}
+            />
+          </div>
         </div>
-      </div>
+      )}
       <div className="select-container">
         <FormControl
           variant="standard"

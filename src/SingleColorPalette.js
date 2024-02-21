@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { generatePalette } from "./colorHelpers";
 import seedColors from "./seedColors";
 import ColorBox from "./ColorBox";
+import Navbar from "./Navbar";
+import PaletteFooter from "./PaletteFooter";
 
 const generateShades = (palette, colorToFilterBy) => {
   let shades = [];
@@ -21,17 +23,19 @@ const generateShades = (palette, colorToFilterBy) => {
 const SingleColorPalette = () => {
   const { paletteId, colorId } = useParams();
   const palette = generatePalette(seedColors.find((p) => p.id === paletteId));
-
   const shades = generateShades(palette, colorId);
 
+  const [format, setFormat] = useState("hex");
+
   const colorBoxes = shades.map((color) => (
-    <ColorBox key={color.id} name={color.name} background={color.hex} />
+    <ColorBox key={color.id} name={color.name} background={color[format]} />
   ));
 
   return (
     <div className="Palette">
-      <h1>Single Color Palette</h1>
+      <Navbar changeFormat={setFormat} />
       <div className="Palette-colors">{colorBoxes}</div>
+      <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji} />
     </div>
   );
 };
