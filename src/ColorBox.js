@@ -3,6 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./ColorBox.css";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import chroma from "chroma-js";
+import styled from "@emotion/styled";
 
 const ColorBox = ({ name, background, id }) => {
   const navigate = useNavigate();
@@ -17,6 +18,18 @@ const ColorBox = ({ name, background, id }) => {
   const isDarkColor = chroma(background).luminance() <= 0.08;
   const isLightColor = chroma(background).luminance() >= 0.7;
 
+  /* EMOTION STYLES */
+  const DefLightText = styled.span`
+    color: ${isLightColor ? "rgba(0,0,0,0.6)" : "white"};
+  `;
+  const DefDarkText = styled.span`
+    color: ${isDarkColor ? "white" : "rgba(0,0,0,0.6)"};
+    ${DefLightText} & {
+      color: red;
+    }
+  `;
+  /* END OF STYLES */
+
   return (
     <CopyToClipboard text={background} onCopy={changeCopyState}>
       <div className="ColorBox" style={{ background }}>
@@ -26,14 +39,18 @@ const ColorBox = ({ name, background, id }) => {
         ></div>
         <div className={`copy-msg ${copied && " show"}`}>
           <h1>copied!</h1>
-          <p className={isLightColor && "dark-text"}>{background}</p>
+          <p>
+            <DefLightText>{background}</DefLightText>
+          </p>
         </div>
         <div className="copy-container">
           <div className="box-content">
-            <span className={isDarkColor && "light-text"}>{name}</span>
+            <span>
+              <DefDarkText>{name}</DefDarkText>
+            </span>
           </div>
-          <button className={`copy-button ${isLightColor && "dark-text"}`}>
-            Copy
+          <button className="copy-button">
+            <DefLightText>Copy</DefLightText>
           </button>
         </div>
         {id && (
@@ -41,8 +58,8 @@ const ColorBox = ({ name, background, id }) => {
             to={`${location.pathname}/${id}`}
             onClick={(e) => e.stopPropagation()}
           >
-            <span className={`see-more ${isLightColor && "dark-text"}`}>
-              More
+            <span className="see-more">
+              <DefLightText>More</DefLightText>
             </span>
           </Link>
         )}
