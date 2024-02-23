@@ -5,6 +5,8 @@ import seedColors from "./seedColors";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
+import getColorBoxStyles from "./ColorBoxStyles";
+import styled from "@emotion/styled";
 
 const generateShades = (palette, colorToFilterBy) => {
   let shades = [];
@@ -27,20 +29,31 @@ const SingleColorPalette = () => {
 
   const [format, setFormat] = useState("hex");
 
+  /* EMOTION STYLES */
+  const { ColorBoxSC, BackButtonSC } = getColorBoxStyles();
+  const GoBackSC = styled.div`
+    ${ColorBoxSC.__emotion_styles}
+    cursor: default;
+    background-color: black;
+    ${BackButtonSC} {
+      cursor: pointer;
+    }
+  `;
+  /* END OF STYLES */
+
   const colorBoxes = shades.map((color) => (
     <ColorBox key={color.name} name={color.name} background={color[format]} />
   ));
-
   return (
     <div className="Palette SingleColorPalette">
       <Navbar changeFormat={setFormat} />
       <div className="Palette-colors">
         {colorBoxes}
-        <div className="go-back ColorBox">
-          <Link to={`/palette/${paletteId}`} className="back-button">
-            Go back
+        <GoBackSC>
+          <Link to={`/palette/${paletteId}`}>
+            <BackButtonSC>Go back</BackButtonSC>
           </Link>
-        </div>
+        </GoBackSC>
       </div>
       <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji} />
     </div>
