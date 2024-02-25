@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./ColorBox.css";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -18,49 +18,52 @@ const ColorBox = ({ name, background, id }) => {
 
   /* EMOTION STYLES */
   let {
-    DefDarkTextSC,
-    DefLightTextSC,
-    ColorBoxSC,
-    CopyButtonSC,
-    CopyOverlaySC,
-    CopyMessageSC,
-  } = getColorBoxStyles(background);
+    DefDarkTextSpan,
+    DefLightTextSpan,
+    ColorBoxDiv,
+    CopyButton,
+    CopyOverlayDiv,
+    CopyMessageDiv,
+    BoxContentDiv,
+  } = useMemo(() => getColorBoxStyles(background), [background]);
   /* END OF STYLES */
 
   return (
     <CopyToClipboard text={background} onCopy={changeCopyState}>
-      <ColorBoxSC>
-        <CopyOverlaySC
+      <ColorBoxDiv>
+        <CopyOverlayDiv
           className={`${copied && " show"}`}
           // style={{ background }}
-        ></CopyOverlaySC>
-        <CopyMessageSC className={`${copied && " show"}`}>
+        ></CopyOverlayDiv>
+
+        <CopyMessageDiv className={`${copied && " show"}`}>
           <h1>copied!</h1>
           <p>
-            <DefLightTextSC>{background}</DefLightTextSC>
+            <DefLightTextSpan>{background}</DefLightTextSpan>
           </p>
-        </CopyMessageSC>
-        <div className="copy-container">
-          <div className="box-content">
-            <span>
-              <DefDarkTextSC>{name}</DefDarkTextSC>
-            </span>
-          </div>
-          <CopyButtonSC>
-            <DefLightTextSC>Copy</DefLightTextSC>
-          </CopyButtonSC>
-        </div>
+        </CopyMessageDiv>
+
+        <BoxContentDiv>
+          <span>
+            <DefDarkTextSpan>{name}</DefDarkTextSpan>
+          </span>
+        </BoxContentDiv>
+
+        <CopyButton>
+          <DefLightTextSpan>Copy</DefLightTextSpan>
+        </CopyButton>
+
         {id && (
           <Link
             to={`${location.pathname}/${id}`}
             onClick={(e) => e.stopPropagation()}
           >
             <span className="see-more">
-              <DefLightTextSC>More</DefLightTextSC>
+              <DefLightTextSpan>More</DefLightTextSpan>
             </span>
           </Link>
         )}
-      </ColorBoxSC>
+      </ColorBoxDiv>
     </CopyToClipboard>
   );
 };

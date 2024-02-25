@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import "./Palette.css";
 import PaletteFooter from "./PaletteFooter";
+import getPaletteStyles from "./PaletteStyles";
 
 const Palette = ({ palette }) => {
   const [level, setLevel] = useState(500);
   const [format, setFormat] = useState("hex");
+
+  /* EMOTION STYLES */
+  const { PaletteDiv, ColorsDiv } = useMemo(() => getPaletteStyles());
+  /* END OF STYLES */
 
   const colorBoxes = palette.colors[level].map((color) => (
     <ColorBox
@@ -18,11 +23,11 @@ const Palette = ({ palette }) => {
   ));
 
   return (
-    <div className="Palette">
+    <PaletteDiv>
       <Navbar level={level} setLevel={setLevel} changeFormat={setFormat} />
-      <div className="Palette-colors">{colorBoxes}</div>
+      <ColorsDiv>{colorBoxes}</ColorsDiv>
       <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji} />
-    </div>
+    </PaletteDiv>
   );
 };
 

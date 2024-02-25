@@ -6,18 +6,18 @@ const getColorBoxStyles = (background) => {
   const isDarkColor = chroma(background).luminance() <= 0.08;
   const isLightColor = chroma(background).luminance() >= 0.7;
 
-  const DefLightTextSC = styled.span`
+  const DefLightTextSpan = styled.span`
     color: ${isLightColor ? "rgba(0,0,0,0.6)" : "white"};
   `;
-  const DefDarkTextSC = styled.span`
+  const DefDarkTextSpan = styled.span`
     color: ${isDarkColor ? "white" : "rgba(0,0,0,0.6)"};
   `;
-  const ColorBoxSC = styled.div`
+  const ColorBoxDiv = styled.div`
+    position: relative;
     width: 20%;
     height: 25%;
     margin: 0, auto;
     display: inline-block;
-    position: relative;
     cursor: pointer;
     margin-bottom: -4.5px;
     background: ${background};
@@ -25,7 +25,7 @@ const getColorBoxStyles = (background) => {
       height: 50%;
     }
   `;
-  const BackButtonSC = styled.button`
+  const BackButton = styled.button`
     width: 100px;
     height: 30px;
     position: absolute;
@@ -44,21 +44,21 @@ const getColorBoxStyles = (background) => {
     text-decoration: none;
     border: none;
   `;
-  const CopyButtonSC = styled.button`
-    ${BackButtonSC.__emotion_styles}
+  const CopyButton = styled.button`
+    ${BackButton.__emotion_styles}
     opacity: 0;
-    ${ColorBoxSC}:hover & {
+    ${ColorBoxDiv}:hover & {
       opacity: 1;
       transition: 0.5s;
     }
   `;
-  const CopyOverlaySC = styled.div`
+  const CopyOverlayDiv = styled.div`
     background: ${background};
     opacity: 0;
     z-index: 0;
     width: 100%;
     height: 100%;
-    transition: transform 10s ease-in-out;
+    transition: transform 0.6s ease-in-out;
     transform: scale(0.1);
     &.show {
       opacity: 1;
@@ -67,7 +67,7 @@ const getColorBoxStyles = (background) => {
       position: absolute;
     }
   `;
-  const CopyMessageSC = styled.div`
+  const CopyMessageDiv = styled.div`
     position: fixed;
     left: 0;
     right: 0;
@@ -78,14 +78,14 @@ const getColorBoxStyles = (background) => {
     align-items: center;
     justify-content: center;
     font-size: 4rem;
-    transform: scale(0.1);
+    transform: scale(0);
     opacity: 0;
     color: #fff;
     &.show {
       opacity: 1;
       transform: scale(1);
       z-index: 25;
-      transition: all 0.4s ease-in-out;
+      transition: opacity 0.4s ease-in-out;
       transition-delay: 0.3s;
     }
     h1 {
@@ -102,15 +102,27 @@ const getColorBoxStyles = (background) => {
       font-weight: 100;
     }
   `;
+  const BoxContentDiv = styled.div`
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    padding: 10px;
+    color: black;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 12px;
+  `;
 
   return {
-    DefDarkTextSC,
-    DefLightTextSC,
-    ColorBoxSC,
-    BackButtonSC,
-    CopyButtonSC,
-    CopyOverlaySC,
-    CopyMessageSC,
+    DefDarkTextSpan,
+    DefLightTextSpan,
+    ColorBoxDiv,
+    BackButton,
+    CopyButton,
+    CopyOverlayDiv,
+    CopyMessageDiv,
+    BoxContentDiv,
   };
 };
 

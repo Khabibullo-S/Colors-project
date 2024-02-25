@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { generatePalette } from "./colorHelpers";
 import seedColors from "./seedColors";
@@ -7,6 +7,7 @@ import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
 import getColorBoxStyles from "./ColorBoxStyles";
 import styled from "@emotion/styled";
+import getPaletteStyles from "./PaletteStyles";
 
 const generateShades = (palette, colorToFilterBy) => {
   let shades = [];
@@ -30,12 +31,13 @@ const SingleColorPalette = () => {
   const [format, setFormat] = useState("hex");
 
   /* EMOTION STYLES */
-  const { ColorBoxSC, BackButtonSC } = getColorBoxStyles();
-  const GoBackSC = styled.div`
-    ${ColorBoxSC.__emotion_styles}
+  const { ColorBoxDiv, BackButton } = useMemo(() => getColorBoxStyles());
+  const { PaletteDiv, ColorsDiv } = useMemo(() => getPaletteStyles());
+  const GoBackDiv = styled.div`
+    ${ColorBoxDiv.__emotion_styles}
     cursor: default;
     background-color: black;
-    ${BackButtonSC} {
+    ${BackButton} {
       cursor: pointer;
     }
   `;
@@ -45,18 +47,18 @@ const SingleColorPalette = () => {
     <ColorBox key={color.name} name={color.name} background={color[format]} />
   ));
   return (
-    <div className="Palette SingleColorPalette">
+    <PaletteDiv className="SingleColorPalette">
       <Navbar changeFormat={setFormat} />
-      <div className="Palette-colors">
+      <ColorsDiv>
         {colorBoxes}
-        <GoBackSC>
+        <GoBackDiv>
           <Link to={`/palette/${paletteId}`}>
-            <BackButtonSC>Go back</BackButtonSC>
+            <BackButton>Go back</BackButton>
           </Link>
-        </GoBackSC>
-      </div>
+        </GoBackDiv>
+      </ColorsDiv>
       <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji} />
-    </div>
+    </PaletteDiv>
   );
 };
 
