@@ -45,7 +45,7 @@
   transition: 0.5s;
 } */
 
-.box-content {
+/* .box-content {
   position: absolute;
   width: 100%;
   left: 0;
@@ -55,7 +55,7 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 12px;
-}
+} */
 /* .light-text {
   color: #fff;
 }
@@ -63,7 +63,7 @@
   color: rgba(0, 0, 0, 0.5);
 } */
 
-.see-more {
+/* .see-more {
   background: rgba(255, 255, 255, 0.3);
   position: absolute;
   border: none;
@@ -75,7 +75,7 @@
   text-align: center;
   line-height: 30px;
   text-transform: uppercase;
-}
+} */
 
 /* .copy-overlay {
   opacity: 0;

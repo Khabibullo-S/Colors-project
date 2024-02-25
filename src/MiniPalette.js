@@ -1,60 +1,28 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "@emotion/styled";
+import getMiniPaletteStyles from "./styles/MiniPaletteStyles";
 // import { css } from "@emotion/react";
 
-const Root = styled.div`
-  background-color: white;
-  border-radius: 5px;
-  padding: 0.5rem;
-  position: relative;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-const Colors = styled.div`
-  height: 120px;
-  width: 100%;
-  background-color: #dae1e4;
-  border-radius: 5px;
-  overflow: hidden;
-`;
-
-const Title = styled.h5`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0;
-  color: black;
-  padding-top: 0.5rem;
-  position: relative;
-`;
-const Emoji = styled.span`
-  margin-left: 0.5rem;
-  font-size: 1.5rem;
-`;
-const MiniColor = styled.div`
-  height: 25%;
-  width: 20%;
-  display: inline-block;
-  margin: 0 auto;
-  position: relative;
-  margin-bottom: -4px;
-`;
-
 const MiniPalette = ({ paletteName, emoji, colors }) => {
+  /* EMOTION STYLES */
+  const { MiniColorDiv, RootDiv, ColorsDiv, TitleH5 } = useMemo(() =>
+    getMiniPaletteStyles()
+  );
+  /* END OF STYLES */
+
   const miniColorBoxes = colors.map((color) => (
-    <MiniColor
+    <MiniColorDiv
       style={{ backgroundColor: color.color }}
       key={color.name}
-    ></MiniColor>
+    ></MiniColorDiv>
   ));
   return (
-    <Root>
-      <Colors>{miniColorBoxes}</Colors>
-      <Title>
+    <RootDiv>
+      <ColorsDiv>{miniColorBoxes}</ColorsDiv>
+      <TitleH5>
         {paletteName} <span>{emoji}</span>
-      </Title>
-    </Root>
+      </TitleH5>
+    </RootDiv>
   );
 };
 

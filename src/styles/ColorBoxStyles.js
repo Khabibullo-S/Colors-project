@@ -113,6 +113,19 @@ const getColorBoxStyles = (background) => {
     text-transform: uppercase;
     font-size: 12px;
   `;
+  const SeeMoreSpan = styled.span`
+    background: rgba(255, 255, 255, 0.3);
+    position: absolute;
+    border: none;
+    right: 0;
+    bottom: 0;
+    color: #fff;
+    width: 60px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    text-transform: uppercase;
+  `;
 
   return {
     DefDarkTextSpan,
@@ -123,6 +136,7 @@ const getColorBoxStyles = (background) => {
     CopyOverlayDiv,
     CopyMessageDiv,
     BoxContentDiv,
+    SeeMoreSpan,
   };
 };
 

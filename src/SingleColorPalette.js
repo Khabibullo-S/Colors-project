@@ -5,9 +5,9 @@ import seedColors from "./seedColors";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
-import getColorBoxStyles from "./ColorBoxStyles";
+import getColorBoxStyles from "./styles/ColorBoxStyles";
 import styled from "@emotion/styled";
-import getPaletteStyles from "./PaletteStyles";
+import getPaletteStyles from "./styles/PaletteStyles";
 
 const generateShades = (palette, colorToFilterBy) => {
   let shades = [];
@@ -33,14 +33,16 @@ const SingleColorPalette = () => {
   /* EMOTION STYLES */
   const { ColorBoxDiv, BackButton } = useMemo(() => getColorBoxStyles());
   const { PaletteDiv, ColorsDiv } = useMemo(() => getPaletteStyles());
-  const GoBackDiv = styled.div`
-    ${ColorBoxDiv.__emotion_styles}
-    cursor: default;
-    background-color: black;
-    ${BackButton} {
-      cursor: pointer;
-    }
-  `;
+  const GoBackDiv = useMemo(
+    () => styled.div`
+      ${ColorBoxDiv.__emotion_styles}
+      cursor: default;
+      background-color: black;
+      ${BackButton} {
+        cursor: pointer;
+      }
+    `
+  );
   /* END OF STYLES */
 
   const colorBoxes = shades.map((color) => (

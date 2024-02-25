@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useMemo } from "react";
+import getPaletteFooterStyles from "./styles/PaletteFooterStyles";
 
 const PaletteFooter = ({ paletteName, emoji }) => {
+  /* EMOTION STYLES */
+  const { PaletteFooter, EmojiSpan } = useMemo(() => getPaletteFooterStyles());
+  /* END OF STYLES */
   return (
-    <footer className="Palette-footer">
+    <PaletteFooter>
       {paletteName}
-      <span className="emoji">{emoji}</span>
-    </footer>
+      <EmojiSpan>{emoji}</EmojiSpan>
+    </PaletteFooter>
   );
 };
 

@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import "./ColorBox.css";
+// import "./ColorBox.css";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import getColorBoxStyles from "./ColorBoxStyles";
+import getColorBoxStyles from "./styles/ColorBoxStyles";
 import chroma from "chroma-js";
 import styled from "@emotion/styled";
 
@@ -25,6 +25,7 @@ const ColorBox = ({ name, background, id }) => {
     CopyOverlayDiv,
     CopyMessageDiv,
     BoxContentDiv,
+    SeeMoreSpan,
   } = useMemo(() => getColorBoxStyles(background), [background]);
   /* END OF STYLES */
 
@@ -58,9 +59,9 @@ const ColorBox = ({ name, background, id }) => {
             to={`${location.pathname}/${id}`}
             onClick={(e) => e.stopPropagation()}
           >
-            <span className="see-more">
+            <SeeMoreSpan>
               <DefLightTextSpan>More</DefLightTextSpan>
-            </span>
+            </SeeMoreSpan>
           </Link>
         )}
       </ColorBoxDiv>
