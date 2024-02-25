@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "rc-slider";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
@@ -7,8 +7,9 @@ import Snackbar from "@mui/material/Snackbar";
 import CloseIcon from "@mui/icons-material/Close";
 import FormControl from "@mui/material/FormControl";
 import "rc-slider/assets/index.css";
-import "./Navbar.css";
+// import "./Navbar.css";
 import { Icon, IconButton } from "@mui/material";
+import getNavbarStyles from "./styles/NavbarStyles";
 
 const Navbar = ({ level, setLevel, changeFormat }) => {
   const [format, setFormat] = useState("hex");
@@ -20,15 +21,21 @@ const Navbar = ({ level, setLevel, changeFormat }) => {
     setSnackbarOpen(true);
   };
 
+  /* EMOTION STYLES */
+  const { NavbarHeader, LogoDiv, SliderDiv, SelectContainerDiv } = useMemo(() =>
+    getNavbarStyles()
+  );
+  /* END OF STYLES */
+
   return (
-    <header className="Navbar">
-      <div className="logo">
+    <NavbarHeader>
+      <LogoDiv>
         <Link to="/">reactcolorpicker</Link>
-      </div>
+      </LogoDiv>
       {level && setLevel && (
-        <div className="slider-container">
+        <div>
           <span>Level: {level}</span>
-          <div className="slider">
+          <SliderDiv>
             <Slider
               defaultValue={level}
               min={100}
@@ -36,10 +43,10 @@ const Navbar = ({ level, setLevel, changeFormat }) => {
               step={100}
               onChangeComplete={setLevel}
             />
-          </div>
+          </SliderDiv>
         </div>
       )}
-      <div className="select-container">
+      <SelectContainerDiv>
         <FormControl
           variant="standard"
           sx={{
@@ -52,7 +59,7 @@ const Navbar = ({ level, setLevel, changeFormat }) => {
             <MenuItem value="rgba">RGBA - rgba(255,255,255, 1.0)</MenuItem>
           </Select>
         </FormControl>
-      </div>
+      </SelectContainerDiv>
       <Snackbar
         anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
         open={snackbarOpen}
@@ -75,7 +82,7 @@ const Navbar = ({ level, setLevel, changeFormat }) => {
           </IconButton>,
         ]}
       />
-    </header>
+    </NavbarHeader>
   );
 };
 

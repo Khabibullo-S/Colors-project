@@ -2,18 +2,6 @@ import chroma from "chroma-js";
 import styled from "@emotion/styled";
 
 const getPaletteFooterStyles = () => {
-  // .Palette-footer {
-  //     background-color: #fff;
-  //     height: 5vh;
-  //     display: flex;
-  //     justify-content: flex-end;
-  //     align-items: center;
-  //     font-weight: bold;
-  //     }
-
-  //     .emoji {
-  //     margin: 0 1rem;
-  //     }
   const PaletteFooter = styled.footer`
     background-color: #fff;
     height: 5vh;
