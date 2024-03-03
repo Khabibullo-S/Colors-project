@@ -31,8 +31,8 @@ const SingleColorPalette = () => {
   const [format, setFormat] = useState("hex");
 
   /* EMOTION STYLES */
-  const { ColorBoxDiv, BackButton } = useMemo(() => getColorBoxStyles());
-  const { PaletteDiv, ColorsDiv } = useMemo(() => getPaletteStyles());
+  const { ColorBoxDiv, BackButton } = useMemo(() => getColorBoxStyles(), []);
+  const { PaletteDiv, ColorsDiv } = useMemo(() => getPaletteStyles(), []);
   const GoBackDiv = useMemo(
     () => styled.div`
       ${ColorBoxDiv.__emotion_styles}
@@ -41,7 +41,8 @@ const SingleColorPalette = () => {
       ${BackButton} {
         cursor: pointer;
       }
-    `
+    `,
+    []
   );
   /* END OF STYLES */
 

@@ -5,6 +5,7 @@ import seedColors from "./seedColors";
 import { generatePalette } from "./colorHelpers";
 import PaletteList from "./PaletteList";
 import SingleColorPalette from "./SingleColorPalette";
+import NewPaletteForm from "./NewPaletteForm";
 
 function PaletteWrapper() {
   const { id } = useParams(); // Now useParams has the context it needs
@@ -31,6 +32,7 @@ function App() {
           path="/palette/:paletteId/:colorId"
           element={<SingleColorPalette />}
         />
+        <Route exact path="/palette/new" element={<NewPaletteForm />} />
       </Routes>
 
       {/* <Palette palette={generatePalette(seedColors[4])} /> */}

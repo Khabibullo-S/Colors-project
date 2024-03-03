@@ -22,8 +22,9 @@ const Navbar = ({ level, setLevel, changeFormat }) => {
   };
 
   /* EMOTION STYLES */
-  const { NavbarHeader, LogoDiv, SliderDiv, SelectContainerDiv } = useMemo(() =>
-    getNavbarStyles()
+  const { NavbarHeader, LogoDiv, SliderDiv, SelectContainerDiv } = useMemo(
+    () => getNavbarStyles(),
+    []
   );
   /* END OF STYLES */
 

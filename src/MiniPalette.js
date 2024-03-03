@@ -5,8 +5,9 @@ import getMiniPaletteStyles from "./styles/MiniPaletteStyles";
 
 const MiniPalette = ({ paletteName, emoji, colors }) => {
   /* EMOTION STYLES */
-  const { MiniColorDiv, RootDiv, ColorsDiv, TitleH5 } = useMemo(() =>
-    getMiniPaletteStyles()
+  const { MiniColorDiv, RootDiv, ColorsDiv, TitleH5 } = useMemo(
+    () => getMiniPaletteStyles(),
+    []
   );
   /* END OF STYLES */
 

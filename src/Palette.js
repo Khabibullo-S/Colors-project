@@ -10,7 +10,7 @@ const Palette = ({ palette }) => {
   const [format, setFormat] = useState("hex");
 
   /* EMOTION STYLES */
-  const { PaletteDiv, ColorsDiv } = useMemo(() => getPaletteStyles());
+  const { PaletteDiv, ColorsDiv } = useMemo(() => getPaletteStyles(), []);
   /* END OF STYLES */
 
   const colorBoxes = palette.colors[level].map((color) => (

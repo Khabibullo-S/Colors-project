@@ -1,57 +1,33 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MiniPalette from "./MiniPalette";
-import styled from "@emotion/styled";
-
-const Root = styled.div`
-  background-color: blue;
-  height: 100vh;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-`;
-
-const Container = styled.div`
-  width: 50%;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  flex-wrap: wrap;
-`;
-
-const Nav = styled.nav`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  color: white;
-`;
-
-const Palettes = styled.div`
-  box-sizing: border-box;
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 30%);
-  grid-gap: 5%;
-`;
+import getPaletteListStyles from "./styles/PaletteListStyles";
 
 const PaletteList = ({ palettes }) => {
   const navigate = useNavigate();
-  console.log(palettes);
+
+  /* EMOTION STYLES */
+  const { RootDiv, ContainerDiv, Nav, PalettesDiv } = useMemo(
+    () => getPaletteListStyles(),
+    []
+  );
+  /* END OF STYLES */
   return (
-    <Root>
-      <Container>
+    <RootDiv>
+      <ContainerDiv>
         <Nav>
           <h1>React Colors</h1>
+          <Link to="/palette/new">Create Palette</Link>
         </Nav>
-        <Palettes>
+        <PalettesDiv>
           {palettes.map((palette) => (
             <div onClick={() => navigate(`/palette/${palette.id}`)}>
               <MiniPalette {...palette} />
             </div>
           ))}
-        </Palettes>
-      </Container>
-    </Root>
+        </PalettesDiv>
+      </ContainerDiv>
+    </RootDiv>
   );
 };
 
