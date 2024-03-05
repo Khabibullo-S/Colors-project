@@ -11,9 +11,8 @@ const Root = styled("div")({
   marginBottom: "-4.5px",
 });
 
-const DraggableColorBox = ({ color }) => {
-  console.log(color);
-  return <Root style={{ backgroundColor: color }}>{color}</Root>;
+const DraggableColorBox = ({ color, name }) => {
+  return <Root style={{ backgroundColor: color }}>{name}</Root>;
 };
 
 export default DraggableColorBox;
