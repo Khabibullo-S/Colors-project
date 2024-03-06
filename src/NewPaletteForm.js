@@ -92,6 +92,10 @@ const NewPaletteForm = (props) => {
     setNewColorName("");
   };
 
+  const removeColor = (colorName) => {
+    setColors(colors.filter((color) => color.name !== colorName));
+  };
+
   const handlePaletteSubmit = () => {
     let newName = newPaletteName;
     const newPalette = {
@@ -153,7 +157,6 @@ const NewPaletteForm = (props) => {
             <TextValidator
               value={newPaletteName}
               label="Palette Name"
-              floatingLabelText="Palette Name"
               onChange={(evt) => setNewPaletteName(evt.target.value)}
               validators={["required", "isPaletteNameUnique"]}
               errorMessages={["this field is required", "Name already used!"]}
@@ -228,7 +231,12 @@ const NewPaletteForm = (props) => {
       <Main open={open}>
         <DrawerHeader />
         {colors.map((color) => (
-          <DraggableColorBox color={color.color} name={color.name} />
+          <DraggableColorBox
+            key={color.name}
+            color={color.color}
+            name={color.name}
+            handleClick={() => removeColor(color.name)}
+          />
         ))}
       </Main>
     </Box>

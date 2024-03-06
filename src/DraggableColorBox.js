@@ -38,13 +38,13 @@ const DeleteIconCustom = styled(DeleteIcon)({
   transition: "all 0.3s ease-in-out",
 });
 
-const DraggableColorBox = ({ color, name }) => {
+const DraggableColorBox = (props) => {
   return (
-    <Root style={{ backgroundColor: color }}>
+    <Root style={{ backgroundColor: props.color }}>
       <BoxContent>
-        <span>{name}</span>
+        <span>{props.name}</span>
         {/* <IconButton sx={{ padding: "6px" }}> */}
-        <DeleteIconCustom />
+        <DeleteIconCustom onClick={props.handleClick} />
         {/* </IconButton> */}
       </BoxContent>
     </Root>
