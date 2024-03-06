@@ -11,6 +11,7 @@ import { ChromePicker } from "react-color";
 import { Button } from "@mui/material";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import DraggableColorList from "./DraggableColorList";
+import ColorPickerForm from "./ColorPickerForm";
 import { arrayMove } from "react-sortable-hoc";
 import PaletteFormNav from "./PaletteFormNav";
 
@@ -49,9 +50,7 @@ const NewPaletteForm = (props) => {
   const { maxColors = 20 } = props;
   const navigate = useNavigate();
   const [open, setOpen] = useState(true);
-  const [currentColor, setCurrentColor] = useState("teal"); // Initialize with a default color
   const [colors, setColors] = useState(props.palettes[0].colors);
-  const [newColorName, setNewColorName] = useState("");
 
   const [isPaletteFull, setIsPaletteFull] = useState(
     colors.length >= props.maxColors
@@ -65,13 +64,8 @@ const NewPaletteForm = (props) => {
     setOpen(false);
   };
 
-  const addNewColor = () => {
-    const newColor = {
-      color: currentColor,
-      name: newColorName,
-    };
+  const addNewColor = (newColor) => {
     setColors([...colors, newColor]);
-    setNewColorName("");
   };
 
   const addRandomColor = () => {
@@ -105,15 +99,6 @@ const NewPaletteForm = (props) => {
   };
 
   useEffect(() => {
-    // Custom rule will have name 'isPasswordMatch'
-    ValidatorForm.addValidationRule("isColorNameUnique", (value) => {
-      return colors.every(
-        ({ name }) => name.toLowerCase() !== value.toLowerCase()
-      );
-    });
-    ValidatorForm.addValidationRule("isColorUnique", () => {
-      return colors.every(({ color }) => color !== currentColor);
-    });
     ValidatorForm.addValidationRule("isPaletteNameUnique", (value) => {
       return props.palettes.every(
         ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
@@ -122,11 +107,9 @@ const NewPaletteForm = (props) => {
 
     // Clean up the validation rule when the component unmounts (optional)
     return () => {
-      ValidatorForm.removeValidationRule("isColorNameUnique");
-      ValidatorForm.removeValidationRule("isColorUnique");
       ValidatorForm.removeValidationRule("isPaletteNameUnique");
     };
-  }, [colors, currentColor]);
+  }, []);
 
   useEffect(() => {
     setIsPaletteFull(colors.length >= maxColors);
@@ -176,33 +159,11 @@ const NewPaletteForm = (props) => {
           </Button>
         </div>
 
-        <ChromePicker
-          color={currentColor}
-          onChange={(newColor) => setCurrentColor(newColor.hex)}
+        <ColorPickerForm
+          isPaletteFull={isPaletteFull}
+          colors={colors}
+          addNewColor={addNewColor}
         />
-
-        <ValidatorForm onSubmit={addNewColor}>
-          <TextValidator
-            value={newColorName}
-            onChange={(evt) => setNewColorName(evt.target.value)}
-            validators={["required", "isColorNameUnique", "isColorUnique"]}
-            errorMessages={[
-              "this field is required",
-              "Color name must be unique",
-              "Color already used!",
-            ]}
-          />
-          <Button
-            variant="contained"
-            style={{
-              backgroundColor: isPaletteFull ? "#e0e0e0" : currentColor,
-            }}
-            type="submit"
-            disabled={isPaletteFull}
-          >
-            {isPaletteFull ? "Palette Full" : "Add Color"}
-          </Button>
-        </ValidatorForm>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
