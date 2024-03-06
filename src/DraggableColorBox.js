@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "@mui/material/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { SortableElement } from "react-sortable-hoc";
 import { IconButton } from "@mui/material";
 
 const Root = styled("div")({
@@ -10,7 +11,7 @@ const Root = styled("div")({
   display: "inline-block",
   position: "relative",
   cursor: "pointer",
-  marginBottom: "-4.5px",
+  marginBottom: "-6.5px",
   "&:hover svg": {
     color: "white",
     transform: "scale(1.5)",
@@ -38,7 +39,7 @@ const DeleteIconCustom = styled(DeleteIcon)({
   transition: "all 0.3s ease-in-out",
 });
 
-const DraggableColorBox = (props) => {
+const DraggableColorBox = SortableElement((props) => {
   return (
     <Root style={{ backgroundColor: props.color }}>
       <BoxContent>
@@ -49,6 +50,6 @@ const DraggableColorBox = (props) => {
       </BoxContent>
     </Root>
   );
-};
+});
 
 export default DraggableColorBox;
