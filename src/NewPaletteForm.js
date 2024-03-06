@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -73,6 +73,8 @@ const NewPaletteForm = (props) => {
   const [newColorName, setNewColorName] = useState("");
   const [newPaletteName, setNewPaletteName] = useState("");
 
+  const paletteNameFormRef = useRef(null);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -144,7 +146,10 @@ const NewPaletteForm = (props) => {
             Persistent drawer
           </Typography>
 
-          <ValidatorForm onSubmit={handlePaletteSubmit}>
+          <ValidatorForm
+            ref={paletteNameFormRef}
+            onSubmit={handlePaletteSubmit}
+          >
             <TextValidator
               value={newPaletteName}
               label="Palette Name"
@@ -153,10 +158,14 @@ const NewPaletteForm = (props) => {
               validators={["required", "isPaletteNameUnique"]}
               errorMessages={["this field is required", "Name already used!"]}
             />
-            <Button variant="contained" color="primary" type="submit">
-              Save Palette
-            </Button>
           </ValidatorForm>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => paletteNameFormRef.current.submit()}
+          >
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
