@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -64,8 +65,9 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
-const NewPaletteForm = () => {
-  const [open, setOpen] = useState(false);
+const NewPaletteForm = (props) => {
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(true);
   const [currentColor, setCurrentColor] = useState("teal"); // Initialize with a default color
   const [colors, setColors] = useState([{ color: "blue", name: "blue" }]);
   const [newName, setNewName] = useState("");
@@ -91,6 +93,18 @@ const NewPaletteForm = () => {
     setNewName(evt.target.value);
   };
 
+  const handlePaletteSubmit = () => {
+    let newName = "New Test Palette";
+    const newPalette = {
+      paletteName: newName,
+      colors: colors,
+      id: newName.toLowerCase().replace(/ /g, "-"),
+      emoji: "🎨",
+    };
+    props.savePalette(newPalette);
+    navigate("/");
+  };
+
   useEffect(() => {
     // Custom rule will have name 'isPasswordMatch'
     ValidatorForm.addValidationRule("isColorNameUnique", (value) => {
@@ -98,7 +112,7 @@ const NewPaletteForm = () => {
         ({ name }) => name.toLowerCase() !== value.toLowerCase()
       );
     });
-    ValidatorForm.addValidationRule("isColorUnique", (value) => {
+    ValidatorForm.addValidationRule("isColorUnique", () => {
       return colors.every(({ color }) => color !== currentColor);
     });
 
@@ -109,15 +123,10 @@ const NewPaletteForm = () => {
     };
   }, [colors, currentColor]);
 
-  // const handleChangeComplete = (colors) => {
-  //   // Update the color state
-  //   setColor(colors.hex);
-  // };
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" open={open} color="default">
         <Toolbar>
           <IconButton
             color="inherit"
@@ -131,6 +140,13 @@ const NewPaletteForm = () => {
           <Typography variant="h6" noWrap component="div">
             Persistent drawer
           </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handlePaletteSubmit}
+          >
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { generatePalette } from "./colorHelpers";
-import seedColors from "./seedColors";
+// import seedColors from "./seedColors";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
@@ -23,9 +23,9 @@ const generateShades = (palette, colorToFilterBy) => {
   return shades.slice(1);
 };
 
-const SingleColorPalette = () => {
+const SingleColorPalette = ({ palettes }) => {
   const { paletteId, colorId } = useParams();
-  const palette = generatePalette(seedColors.find((p) => p.id === paletteId));
+  const palette = generatePalette(palettes.find((p) => p.id === paletteId));
   const shades = generateShades(palette, colorId);
 
   const [format, setFormat] = useState("hex");
