@@ -19,6 +19,9 @@ const AppBar = styled(MuiAppBar, {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+  flexDirection: "row",
+  justifyContent: "space-between",
+  height: "64px",
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
@@ -28,6 +31,8 @@ const AppBar = styled(MuiAppBar, {
     }),
   }),
 }));
+
+const NavBtns = styled("div")(({ theme }) => ({}));
 
 const PaletteFormNav = ({ open, handleDrawerOpen, handlePaletteSubmit }) => {
   const navigate = useNavigate();
@@ -50,9 +55,10 @@ const PaletteFormNav = ({ open, handleDrawerOpen, handlePaletteSubmit }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Persistent drawer
+            Create A Palette
           </Typography>
-
+        </Toolbar>
+        <NavBtns>
           <ValidatorForm
             ref={paletteNameFormRef}
             onSubmit={() => handlePaletteSubmit(newPaletteName)}
@@ -79,7 +85,7 @@ const PaletteFormNav = ({ open, handleDrawerOpen, handlePaletteSubmit }) => {
           >
             Go Back
           </Button>
-        </Toolbar>
+        </NavBtns>
       </AppBar>
     </>
   );
