@@ -10,8 +10,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Button } from "@mui/material";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
-import { drawerWidth } from "./NewPaletteForm";
 import PaletteMetaForm from "./PaletteMetaForm";
+import { APPBAR_HEIGHT, DRAWER_WIDTH } from "./constants";
+import { AddToPhotos } from "@mui/icons-material";
+
+const drawerWidth = DRAWER_WIDTH;
+const appBarHeight = APPBAR_HEIGHT;
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -23,7 +27,7 @@ const AppBar = styled(MuiAppBar, {
   flexDirection: "row",
   justifyContent: "space-between",
   alignItems: "center",
-  height: "64px",
+  height: `${appBarHeight}px`,
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: `${drawerWidth}px`,
@@ -61,7 +65,7 @@ const PaletteFormNav = ({ open, handleDrawerOpen, handlePaletteSubmit }) => {
             edge="start"
             sx={{ mr: 2, ...(open && { display: "none" }) }}
           >
-            <MenuIcon />
+            <AddToPhotos />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
             Create A Palette

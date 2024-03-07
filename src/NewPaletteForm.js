@@ -14,8 +14,10 @@ import DraggableColorList from "./DraggableColorList";
 import ColorPickerForm from "./ColorPickerForm";
 import { arrayMove } from "react-sortable-hoc";
 import PaletteFormNav from "./PaletteFormNav";
+import { APPBAR_HEIGHT, DRAWER_WIDTH } from "./constants";
 
-export const drawerWidth = 400;
+const drawerWidth = DRAWER_WIDTH;
+const appBarHeight = APPBAR_HEIGHT;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
   ({ theme, open }) => ({
@@ -33,7 +35,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
       }),
       marginLeft: 0,
     }),
-    height: `calc(100vh - 64px)`,
+    height: `calc(100vh - ${appBarHeight}px)`,
   })
 );
 
