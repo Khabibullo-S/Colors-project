@@ -33,7 +33,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
       }),
       marginLeft: 0,
     }),
-    height: `calc(100vh - 50.5px)`,
+    height: `calc(100vh - 64px)`,
   })
 );
 

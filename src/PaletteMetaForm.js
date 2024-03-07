@@ -8,25 +8,13 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
-const PaletteMetaForm = ({ handlePaletteSubmit }) => {
-  const [open, setOpen] = useState(false);
+const PaletteMetaForm = ({ handlePaletteSubmit, open, handleClose }) => {
   const [newPaletteName, setNewPaletteName] = useState("");
 
   const paletteNameFormRef = useRef(null);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -42,11 +30,11 @@ const PaletteMetaForm = ({ handlePaletteSubmit }) => {
           },
         }}
       >
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Choose a Palette Name</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
+            Please enter a name for your new beautiful palette. Make sure it's
+            unique!
           </DialogContentText>
           <ValidatorForm
             ref={paletteNameFormRef}
@@ -58,8 +46,15 @@ const PaletteMetaForm = ({ handlePaletteSubmit }) => {
               onChange={(evt) => setNewPaletteName(evt.target.value)}
               validators={["required", "isPaletteNameUnique"]}
               errorMessages={["this field is required", "Name already used!"]}
+              margin="normal"
+              fullWidth
             />
           </ValidatorForm>
+        </DialogContent>
+        <DialogActions>
+          <Button variant="outlined" color="primary" onClick={handleClose}>
+            Cancel
+          </Button>
           <Button
             variant="contained"
             color="primary"
@@ -67,10 +62,6 @@ const PaletteMetaForm = ({ handlePaletteSubmit }) => {
           >
             Save Palette
           </Button>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit">Subscribe</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

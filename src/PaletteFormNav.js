@@ -22,6 +22,7 @@ const AppBar = styled(MuiAppBar, {
   }),
   flexDirection: "row",
   justifyContent: "space-between",
+  alignItems: "center",
   height: "64px",
   ...(open && {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -33,10 +34,24 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const NavBtns = styled("div")({});
+const NavBtns = styled("div")({
+  marginRight: "1rem",
+  "& .MuiButton-root": {
+    margin: "0 0.5rem",
+  },
+});
 
 const PaletteFormNav = ({ open, handleDrawerOpen, handlePaletteSubmit }) => {
   const navigate = useNavigate();
+  const [openForm, setOpenForm] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpenForm(true);
+  };
+
+  const handleClose = () => {
+    setOpenForm(false);
+  };
 
   return (
     <>
@@ -57,7 +72,6 @@ const PaletteFormNav = ({ open, handleDrawerOpen, handlePaletteSubmit }) => {
           </Typography>
         </Toolbar>
         <NavBtns>
-          <PaletteMetaForm handlePaletteSubmit={handlePaletteSubmit} />
           <Button
             variant="contained"
             color="secondary"
@@ -65,8 +79,18 @@ const PaletteFormNav = ({ open, handleDrawerOpen, handlePaletteSubmit }) => {
           >
             Go Back
           </Button>
+          <Button variant="contained" color="primary" onClick={handleClickOpen}>
+            Save
+          </Button>
         </NavBtns>
       </AppBar>
+      {openForm && (
+        <PaletteMetaForm
+          handlePaletteSubmit={handlePaletteSubmit}
+          open={openForm}
+          handleClose={handleClose}
+        />
+      )}
     </>
   );
 };
