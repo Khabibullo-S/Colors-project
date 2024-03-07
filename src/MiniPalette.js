@@ -2,9 +2,14 @@ import React, { useMemo } from "react";
 import styled from "@emotion/styled";
 import getMiniPaletteStyles from "./styles/MiniPaletteStyles";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { IconButton } from "@mui/material";
 // import { css } from "@emotion/react";
 
-const MiniPalette = ({ paletteName, emoji, colors }) => {
+const MiniPalette = ({ paletteName, emoji, colors, id, deletePalette }) => {
+  const handleDelete = (e) => {
+    e.stopPropagation();
+    deletePalette(id);
+  };
   /* EMOTION STYLES */
   const { MiniColorDiv, RootDiv, ColorsDiv, TitleH5, IconDiv } = useMemo(
     () => getMiniPaletteStyles(),
@@ -20,7 +25,7 @@ const MiniPalette = ({ paletteName, emoji, colors }) => {
   ));
   return (
     <RootDiv>
-      <IconDiv>
+      <IconDiv onClick={handleDelete}>
         <DeleteIcon />
       </IconDiv>
       <ColorsDiv>{miniColorBoxes}</ColorsDiv>

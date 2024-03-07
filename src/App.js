@@ -11,6 +11,10 @@ const App = () => {
   const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
   const [palettes, setPalettes] = useState(savedPalettes || seedColors);
 
+  const deletePalette = (id) => {
+    setPalettes(palettes.filter((palette) => palette.id !== id));
+  };
+
   const savePalette = (newPalette) => {
     setPalettes([...palettes, newPalette]);
   };
@@ -41,7 +45,13 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route exact path="/" element={<PaletteList palettes={palettes} />} />
+        <Route
+          exact
+          path="/"
+          element={
+            <PaletteList palettes={palettes} deletePalette={deletePalette} />
+          }
+        />
         <Route exact path="/palette/:id" element={<PaletteWrapper />} />
         <Route
           exact

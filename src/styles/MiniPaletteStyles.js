@@ -55,6 +55,9 @@ const getMiniPaletteStyles = () => {
     opacity: 0;
     transition: all 0.3s ease-in-out;
     ${RootDiv}:hover & {
+      opacity: 0.9;
+    }
+    ${RootDiv}:hover &:hover {
       opacity: 1;
     }
   `;

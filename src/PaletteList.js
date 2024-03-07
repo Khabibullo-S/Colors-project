@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import MiniPalette from "./MiniPalette";
 import getPaletteListStyles from "./styles/PaletteListStyles";
 
-const PaletteList = ({ palettes }) => {
+const PaletteList = ({ palettes, deletePalette }) => {
   const navigate = useNavigate();
 
   /* EMOTION STYLES */
@@ -22,7 +22,11 @@ const PaletteList = ({ palettes }) => {
         <PalettesDiv>
           {palettes.map((palette) => (
             <div onClick={() => navigate(`/palette/${palette.id}`)}>
-              <MiniPalette {...palette} />
+              <MiniPalette
+                {...palette}
+                deletePalette={deletePalette}
+                key={palette.id}
+              />
             </div>
           ))}
         </PalettesDiv>
