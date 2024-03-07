@@ -32,7 +32,7 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const NavBtns = styled("div")(({ theme }) => ({}));
+const NavBtns = styled("div")({});
 
 const PaletteFormNav = ({ open, handleDrawerOpen, handlePaletteSubmit }) => {
   const navigate = useNavigate();

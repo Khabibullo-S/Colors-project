@@ -46,6 +46,22 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   justifyContent: "flex-end",
 }));
 
+const Buttons = styled("div")({
+  width: "100%",
+  "& .MuiButton-root": {
+    width: "50%",
+  },
+});
+const Container = styled("div")({
+  height: "100%",
+  width: "100%",
+  padding: "0 10%",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
 const NewPaletteForm = (props) => {
   const { maxColors = 20 } = props;
   const navigate = useNavigate();
@@ -143,27 +159,29 @@ const NewPaletteForm = (props) => {
 
         <Divider />
 
-        <Typography variant="h4">Design Your Palette</Typography>
-
-        <div>
-          <Button variant="contained" color="secondary" onClick={clearColors}>
-            Clear Palette
-          </Button>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={addRandomColor}
-            disabled={isPaletteFull}
-          >
-            Random Color
-          </Button>
-        </div>
-
-        <ColorPickerForm
-          isPaletteFull={isPaletteFull}
-          colors={colors}
-          addNewColor={addNewColor}
-        />
+        <Container>
+          <Typography variant="h4" gutterBottom>
+            Design Your Palette
+          </Typography>
+          <Buttons>
+            <Button variant="contained" color="secondary" onClick={clearColors}>
+              Clear Palette
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={addRandomColor}
+              disabled={isPaletteFull}
+            >
+              Random Color
+            </Button>
+          </Buttons>
+          <ColorPickerForm
+            isPaletteFull={isPaletteFull}
+            colors={colors}
+            addNewColor={addNewColor}
+          />
+        </Container>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
