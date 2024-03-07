@@ -6,9 +6,9 @@ const getMiniPaletteStyles = () => {
     border-radius: 5px;
     padding: 0.5rem;
     position: relative;
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 10;
   `;
   const ColorsDiv = styled.div`
     height: 120px;
@@ -38,8 +38,28 @@ const getMiniPaletteStyles = () => {
     position: relative;
     margin-bottom: -4px;
   `;
+  const IconDiv = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
 
-  return { RootDiv, ColorsDiv, TitleH5, EmojiSpan, MiniColorDiv };
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+    background-color: #eb3d30;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    ${RootDiv}:hover & {
+      opacity: 1;
+    }
+  `;
+
+  return { RootDiv, ColorsDiv, TitleH5, EmojiSpan, MiniColorDiv, IconDiv };
 };
 
 export default getMiniPaletteStyles;
