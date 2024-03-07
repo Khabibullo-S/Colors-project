@@ -11,6 +11,7 @@ import { Button } from "@mui/material";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
 import { drawerWidth } from "./NewPaletteForm";
+import PaletteMetaForm from "./PaletteMetaForm";
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -36,9 +37,6 @@ const NavBtns = styled("div")({});
 
 const PaletteFormNav = ({ open, handleDrawerOpen, handlePaletteSubmit }) => {
   const navigate = useNavigate();
-  const [newPaletteName, setNewPaletteName] = useState("");
-
-  const paletteNameFormRef = useRef(null);
 
   return (
     <>
@@ -59,25 +57,7 @@ const PaletteFormNav = ({ open, handleDrawerOpen, handlePaletteSubmit }) => {
           </Typography>
         </Toolbar>
         <NavBtns>
-          <ValidatorForm
-            ref={paletteNameFormRef}
-            onSubmit={() => handlePaletteSubmit(newPaletteName)}
-          >
-            <TextValidator
-              value={newPaletteName}
-              label="Palette Name"
-              onChange={(evt) => setNewPaletteName(evt.target.value)}
-              validators={["required", "isPaletteNameUnique"]}
-              errorMessages={["this field is required", "Name already used!"]}
-            />
-          </ValidatorForm>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => paletteNameFormRef.current.submit()}
-          >
-            Save Palette
-          </Button>
+          <PaletteMetaForm handlePaletteSubmit={handlePaletteSubmit} />
           <Button
             variant="contained"
             color="secondary"
