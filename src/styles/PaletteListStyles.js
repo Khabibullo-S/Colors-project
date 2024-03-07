@@ -3,7 +3,9 @@ import styled from "@emotion/styled";
 const getPaletteListStyles = () => {
   const RootDiv = styled.div`
     background-color: blue;
-    height: 100vh;
+    min-height: 100vh;
+    height: min-content;
+    padding: 0 0 200px 0;
     display: flex;
     align-items: flex-start;
     justify-content: center;
