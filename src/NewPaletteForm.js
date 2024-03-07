@@ -99,13 +99,9 @@ const NewPaletteForm = (props) => {
     setColors([]);
   };
 
-  const handlePaletteSubmit = (newPaletteName) => {
-    const newPalette = {
-      paletteName: newPaletteName,
-      colors: colors,
-      id: newPaletteName.toLowerCase().replace(/ /g, "-"),
-      emoji: "🎨",
-    };
+  const handlePaletteSubmit = (newPalette) => {
+    newPalette.colors = colors;
+    newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
     props.savePalette(newPalette);
     navigate("/");
   };

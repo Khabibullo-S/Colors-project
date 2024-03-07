@@ -43,14 +43,10 @@ const NavBtns = styled("div")({
 
 const PaletteFormNav = ({ open, handleDrawerOpen, handlePaletteSubmit }) => {
   const navigate = useNavigate();
-  const [openForm, setOpenForm] = useState(false);
+  const [formStage, setFormStage] = useState("");
 
   const handleClickOpen = () => {
-    setOpenForm(true);
-  };
-
-  const handleClose = () => {
-    setOpenForm(false);
+    setFormStage("form");
   };
 
   return (
@@ -84,13 +80,11 @@ const PaletteFormNav = ({ open, handleDrawerOpen, handlePaletteSubmit }) => {
           </Button>
         </NavBtns>
       </AppBar>
-      {openForm && (
-        <PaletteMetaForm
-          handlePaletteSubmit={handlePaletteSubmit}
-          open={openForm}
-          handleClose={handleClose}
-        />
-      )}
+      <PaletteMetaForm
+        handlePaletteSubmit={handlePaletteSubmit}
+        stage={formStage}
+        setFormStage={setFormStage}
+      />
     </>
   );
 };

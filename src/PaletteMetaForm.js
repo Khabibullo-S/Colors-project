@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -10,27 +10,43 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 
-const PaletteMetaForm = ({ handlePaletteSubmit, open, handleClose }) => {
+const PaletteMetaForm = ({ handlePaletteSubmit, stage, setFormStage }) => {
   const [newPaletteName, setNewPaletteName] = useState("");
 
   const paletteNameFormRef = useRef(null);
 
+  const showEmojiPicker = () => {
+    setFormStage("emoji");
+  };
+
+  const handleClose = () => {
+    setFormStage("");
+  };
+
+  const savePalette = (emoji) => {
+    const newPalette = { paletteName: newPaletteName, emoji: emoji.native };
+    handlePaletteSubmit(newPalette);
+  };
+
   return (
     <React.Fragment>
+      <Dialog open={stage == "emoji"} onClose={handleClose}>
+        <Picker data={data} onEmojiSelect={savePalette} theme="light" />
+      </Dialog>
       <Dialog
-        open={open}
+        open={stage == "form"}
         onClose={handleClose}
-        PaperProps={{
-          component: "form",
-          onSubmit: (event) => {
-            event.preventDefault();
-            const formData = new FormData(event.currentTarget);
-            const formJson = Object.fromEntries(formData.entries());
-            const email = formJson.email;
-            console.log(email);
-            handleClose();
-          },
-        }}
+        // PaperProps={{
+        //   component: "form",
+        //   onSubmit: (event) => {
+        //     event.preventDefault();
+        //     const formData = new FormData(event.currentTarget);
+        //     const formJson = Object.fromEntries(formData.entries());
+        //     const email = formJson.email;
+        //     console.log(email);
+        //     handleClose();
+        //   },
+        // }}
       >
         <DialogTitle>Choose a Palette Name</DialogTitle>
         <DialogContent>
@@ -39,12 +55,7 @@ const PaletteMetaForm = ({ handlePaletteSubmit, open, handleClose }) => {
             unique!
           </DialogContentText>
 
-          <Picker data={data} onEmojiSelect={console.log} />
-
-          <ValidatorForm
-            ref={paletteNameFormRef}
-            onSubmit={() => handlePaletteSubmit(newPaletteName)}
-          >
+          <ValidatorForm ref={paletteNameFormRef} onSubmit={showEmojiPicker}>
             <TextValidator
               value={newPaletteName}
               label="Palette Name"
