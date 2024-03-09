@@ -1,5 +1,6 @@
 import chroma from "chroma-js";
 import styled from "@emotion/styled";
+import sizes from "./sizes";
 
 const getColorBoxStyles = (background) => {
   background = background ? background : "#000";
@@ -23,6 +24,32 @@ const getColorBoxStyles = (background) => {
     background: ${background};
     .SingleColorPalette & {
       height: 50%;
+    }
+    ${sizes.down("lg")} {
+      width: 25%;
+      height: 20%;
+      margin-bottom: -3.9px;
+      .SingleColorPalette & {
+        width: 50%;
+        height: 20%;
+      }
+    }
+    ${sizes.down("md")} {
+      width: 50%;
+      height: 10%;
+      margin-bottom: -4px;
+      .SingleColorPalette & {
+        width: 50%;
+        height: 20%;
+      }
+    }
+    ${sizes.down("xs")} {
+      width: 100%;
+      height: 5%;
+      margin-bottom: -4px;
+      .SingleColorPalette & {
+        height: 10%;
+      }
     }
   `;
   const BackButton = styled.button`
@@ -125,6 +152,9 @@ const getColorBoxStyles = (background) => {
     text-align: center;
     line-height: 30px;
     text-transform: uppercase;
+    ${sizes.down("xs")} {
+      height: 100%;
+    }
   `;
 
   return {
