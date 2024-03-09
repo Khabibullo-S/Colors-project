@@ -8,6 +8,7 @@ import PaletteFooter from "./PaletteFooter";
 import getColorBoxStyles from "./styles/ColorBoxStyles";
 import styled from "@emotion/styled";
 import getPaletteStyles from "./styles/PaletteStyles";
+import sizes from "./styles/sizes";
 
 const generateShades = (palette, colorToFilterBy) => {
   let shades = [];
@@ -40,6 +41,26 @@ const SingleColorPalette = ({ palettes }) => {
       background-color: black;
       ${BackButton} {
         cursor: pointer;
+      }
+      ${sizes.down("lg")} {
+        .SingleColorPalette & {
+          width: 50%;
+          height: 20%;
+          margin-bottom: -3.9px;
+        }
+      }
+      ${sizes.down("md")} {
+        .SingleColorPalette & {
+          width: 50%;
+          height: 20%;
+          margin-bottom: -4px;
+        }
+      }
+      ${sizes.down("xs")} {
+        .SingleColorPalette & {
+          width: 100%;
+          height: 10%;
+        }
       }
     `,
     []

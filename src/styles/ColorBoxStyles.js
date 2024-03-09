@@ -48,6 +48,7 @@ const getColorBoxStyles = (background) => {
       height: 5%;
       margin-bottom: -4px;
       .SingleColorPalette & {
+        width: 100%;
         height: 10%;
       }
     }
@@ -123,6 +124,9 @@ const getColorBoxStyles = (background) => {
       margin-bottom: 0;
       text-align: center;
       text-transform: uppercase;
+      ${sizes.down("xs")} {
+        font-size: 6rem;
+      }
     }
     p {
       font-size: 2rem;
