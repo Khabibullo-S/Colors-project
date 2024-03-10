@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from "react";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
-// import "./Palette.css";
 import PaletteFooter from "./PaletteFooter";
 import getPaletteStyles from "./styles/PaletteStyles";
 

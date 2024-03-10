@@ -1,6 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -31,11 +30,11 @@ const PaletteMetaForm = ({ handlePaletteSubmit, stage, setFormStage }) => {
 
   return (
     <React.Fragment>
-      <Dialog open={stage == "emoji"} onClose={handleClose}>
+      <Dialog open={stage === "emoji"} onClose={handleClose}>
         <Picker data={data} onEmojiSelect={savePalette} theme="light" />
       </Dialog>
       <Dialog
-        open={stage == "form"}
+        open={stage === "form"}
         onClose={handleClose}
         // PaperProps={{
         //   component: "form",

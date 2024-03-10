@@ -1,10 +1,7 @@
 import React, { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "@emotion/styled";
 import getMiniPaletteStyles from "./styles/MiniPaletteStyles";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { IconButton } from "@mui/material";
-// import { css } from "@emotion/react";
 
 const MiniPalette = React.memo(
   ({ paletteName, emoji, colors, id, openDialog }) => {

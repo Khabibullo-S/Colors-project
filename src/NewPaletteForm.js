@@ -4,10 +4,8 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { ChromePicker } from "react-color";
 import { Button } from "@mui/material";
 import { ValidatorForm } from "react-material-ui-form-validator";
 import DraggableColorList from "./DraggableColorList";
@@ -16,6 +14,7 @@ import { arrayMove } from "react-sortable-hoc";
 import PaletteFormNav from "./PaletteFormNav";
 import { APPBAR_HEIGHT, DRAWER_WIDTH } from "./constants";
 import sizes from "./styles/sizes";
+import seedColors from "./seedColors";
 
 const drawerWidth = DRAWER_WIDTH;
 const appBarHeight = APPBAR_HEIGHT;
@@ -73,7 +72,7 @@ const NewPaletteForm = (props) => {
   const { maxColors = 20 } = props;
   const navigate = useNavigate();
   const [open, setOpen] = useState(true);
-  const [colors, setColors] = useState(props.palettes[0].colors);
+  const [colors, setColors] = useState(seedColors[0].colors);
 
   const [isPaletteFull, setIsPaletteFull] = useState(
     colors.length >= props.maxColors

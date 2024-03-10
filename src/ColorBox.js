@@ -1,10 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-// import "./ColorBox.css";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import getColorBoxStyles from "./styles/ColorBoxStyles";
-import chroma from "chroma-js";
-import styled from "@emotion/styled";
 
 const ColorBox = ({ name, background, id }) => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MiniPalette from "./MiniPalette";
 import getPaletteListStyles from "./styles/PaletteListStyles";
 import { CSSTransition, TransitionGroup } from "react-transition-group";

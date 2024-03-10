@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
 import { generatePalette } from "./colorHelpers";
-// import seedColors from "./seedColors";
 import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";

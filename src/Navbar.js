@@ -7,7 +7,6 @@ import Snackbar from "@mui/material/Snackbar";
 import CloseIcon from "@mui/icons-material/Close";
 import FormControl from "@mui/material/FormControl";
 import "rc-slider/assets/index.css";
-// import "./Navbar.css";
 import { Icon, IconButton } from "@mui/material";
 import getNavbarStyles from "./styles/NavbarStyles";
 

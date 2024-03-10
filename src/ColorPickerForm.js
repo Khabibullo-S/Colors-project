@@ -56,7 +56,11 @@ const ColorPickerForm = ({ isPaletteFull, colors, addNewColor }) => {
         onChange={(newColor) => setCurrentColor(newColor.hex)}
       />
 
-      <ValidatorForm onSubmit={handleSubmit} style={{ width: "100%" }}>
+      <ValidatorForm
+        onSubmit={handleSubmit}
+        style={{ width: "100%" }}
+        instantValidate={false}
+      >
         <ColorNameInput
           variant="filled"
           margin="normal"

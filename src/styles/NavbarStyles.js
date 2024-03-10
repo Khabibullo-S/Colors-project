@@ -50,7 +50,7 @@ const getNavbarStyles = () => {
       height: 13px;
       margin-top: -2.5px;
     }
-    ${sizes.down("md")} {
+    ${sizes.down("sm")} {
       width: 150px;
     }
   `;

@@ -2,15 +2,20 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { SortableElement } from "react-sortable-hoc";
-import { IconButton } from "@mui/material";
 import sizes from "./styles/sizes";
+import chroma from "chroma-js";
 
-const Root = styled("div")({
+const Root = styled("div")((props) => ({
+  "--text-color":
+    chroma(props.backgroundColor).luminance() <= 0.08
+      ? "rgba(255,255,255,0.8)"
+      : "rgba(0,0,0,0.6)",
   width: "20%",
   height: "25%",
   margin: "0, auto",
   display: "inline-block",
   position: "relative",
+  backgroundColor: props.backgroundColor,
   cursor: "pointer",
   marginBottom: "-6.5px",
   "&:hover svg": {
@@ -30,7 +35,7 @@ const Root = styled("div")({
     height: "5%",
     marginBottom: "-6.4px",
   },
-});
+}));
 
 const BoxContent = styled("div")({
   position: "absolute",
@@ -38,10 +43,10 @@ const BoxContent = styled("div")({
   left: "0",
   bottom: "0",
   padding: "10px",
-  color: "rgba(0,0,0,0.5)",
   letterSpacing: "1px",
   textTransform: "uppercase",
   fontSize: "12px",
+  color: "var(--text-color)",
   display: "flex",
   alignItems: "flex-end",
   justifyContent: "space-between",
@@ -59,7 +64,7 @@ const DeleteIconCustom = styled(DeleteIcon)({
 
 const DraggableColorBox = SortableElement((props) => {
   return (
-    <Root style={{ backgroundColor: props.color }}>
+    <Root backgroundColor={props.color}>
       <BoxContent>
         <span>{props.name}</span>
         {/* <IconButton sx={{ padding: "6px" }}> */}
