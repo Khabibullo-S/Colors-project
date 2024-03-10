@@ -5,10 +5,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { IconButton } from "@mui/material";
 // import { css } from "@emotion/react";
 
-const MiniPalette = ({ paletteName, emoji, colors, id, deletePalette }) => {
+const MiniPalette = ({ paletteName, emoji, colors, id, openDialog }) => {
   const handleDelete = (e) => {
     e.stopPropagation();
-    deletePalette(id);
+    openDialog(id);
   };
   /* EMOTION STYLES */
   const { MiniColorDiv, RootDiv, ColorsDiv, TitleH5, IconDiv } = useMemo(

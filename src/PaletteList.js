@@ -1,14 +1,39 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MiniPalette from "./MiniPalette";
 import getPaletteListStyles from "./styles/PaletteListStyles";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import styled from "@emotion/styled";
+import {
+  Avatar,
+  Dialog,
+  DialogTitle,
+  List,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
+import { Check, Close } from "@mui/icons-material";
+import { blue, red } from "@mui/material/colors";
 
 const TRANSITION_TIME = 500;
 
 const PaletteList = ({ palettes, deletePalette }) => {
   const navigate = useNavigate();
+  const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
+  const [deletingId, setDeletingId] = useState("");
+  const openDialog = (id) => {
+    setOpenDeleteDialog(true);
+    setDeletingId(id);
+  };
+  const closeDialog = () => {
+    setOpenDeleteDialog(false);
+    setDeletingId("");
+  };
+  const handleDeletePalette = () => {
+    deletePalette(deletingId);
+    closeDialog();
+  };
 
   /* EMOTION STYLES */
   const { RootDiv, ContainerDiv, Nav, PalettesDiv } = useMemo(
@@ -48,7 +73,8 @@ const PaletteList = ({ palettes, deletePalette }) => {
               <div onClick={() => navigate(`/palette/${palette.id}`)}>
                 <MiniPalette
                   {...palette}
-                  deletePalette={deletePalette}
+                  // deletePalette={deletePalette}
+                  openDialog={openDialog}
                   key={palette.id}
                 />
               </div>
@@ -57,6 +83,31 @@ const PaletteList = ({ palettes, deletePalette }) => {
         </TransitionGroupStyled>
         {/* </PalettesDiv> */}
       </ContainerDiv>
+      <Dialog
+        open={openDeleteDialog}
+        aria-labelledby="delete-dialog-title"
+        onClose={closeDialog}
+      >
+        <DialogTitle id="delete-dialog-title">Delete This Palette?</DialogTitle>
+        <List>
+          <ListItemButton onClick={handleDeletePalette}>
+            <ListItemAvatar>
+              <Avatar sx={{ backgroundColor: blue[100], color: blue[600] }}>
+                <Check />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Delete" />
+          </ListItemButton>
+          <ListItemButton onClick={closeDialog}>
+            <ListItemAvatar>
+              <Avatar sx={{ backgroundColor: red[100], color: red[600] }}>
+                <Close />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary="Cancel" />
+          </ListItemButton>
+        </List>
+      </Dialog>
     </RootDiv>
   );
 };
