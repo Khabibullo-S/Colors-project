@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Route, Routes, useParams, useLocation } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  useParams,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import seedColors from "./seedColors";
 import { generatePalette } from "./colorHelpers";
@@ -89,6 +95,7 @@ const App = () => {
               </Page>
             }
           />
+          <Route exact path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </CSSTransition>
     </TransitionGroup>

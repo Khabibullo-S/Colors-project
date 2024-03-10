@@ -91,9 +91,15 @@ const NewPaletteForm = (props) => {
   };
 
   const addRandomColor = () => {
-    const allColors = props.palettes.map((p) => p.colors).flat();
-    const rand = Math.floor(Math.random() * allColors.length);
-    const randomColor = allColors[rand];
+    const allColors = [...props.palettes, ...seedColors]
+      .map((p) => p.colors)
+      .flat();
+    let rand = Math.floor(Math.random() * allColors.length);
+    let randomColor = allColors[rand];
+    while (colors.some((color) => color.name === randomColor.name)) {
+      rand = Math.floor(Math.random() * allColors.length);
+      randomColor = allColors[rand];
+    }
     setColors([...colors, randomColor]);
   };
 
