@@ -4,6 +4,7 @@ const getMiniPaletteStyles = () => {
   const RootDiv = styled.div`
     background-color: white;
     border-radius: 5px;
+    border: 1px solid black;
     padding: 0.5rem;
     position: relative;
     cursor: pointer;

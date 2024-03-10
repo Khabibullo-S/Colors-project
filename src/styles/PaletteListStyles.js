@@ -1,15 +1,17 @@
 import styled from "@emotion/styled";
 import sizes from "./sizes";
+import bg from "./confetti-doodles.svg";
 
 const getPaletteListStyles = () => {
   const RootDiv = styled.div`
-    background-color: blue;
     min-height: 100vh;
     height: min-content;
-    padding: 0 0 200px 0;
+    padding: 0 0 100px 0;
     display: flex;
     align-items: flex-start;
     justify-content: center;
+    background-color: #394bad;
+    background-image: url(${bg});
   `;
 
   const ContainerDiv = styled.div`
@@ -35,6 +37,9 @@ const getPaletteListStyles = () => {
     a {
       color: white;
       font-weight: 100;
+    }
+    h1 {
+      font-size: 2rem;
     }
   `;
 
