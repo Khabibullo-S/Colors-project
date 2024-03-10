@@ -15,6 +15,7 @@ import ColorPickerForm from "./ColorPickerForm";
 import { arrayMove } from "react-sortable-hoc";
 import PaletteFormNav from "./PaletteFormNav";
 import { APPBAR_HEIGHT, DRAWER_WIDTH } from "./constants";
+import sizes from "./styles/sizes";
 
 const drawerWidth = DRAWER_WIDTH;
 const appBarHeight = APPBAR_HEIGHT;
@@ -36,6 +37,10 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
       marginLeft: 0,
     }),
     height: `calc(100vh - ${appBarHeight}px)`,
+    [sizes.down("sm")]: {
+      marginLeft: `-100%`,
+      height: `calc(100vh - ${appBarHeight}px)`,
+    },
   })
 );
 
@@ -144,6 +149,12 @@ const NewPaletteForm = (props) => {
             width: drawerWidth,
             boxSizing: "border-box",
           },
+          [sizes.down("sm")]: {
+            width: "100%",
+            "& .MuiDrawer-paper": {
+              width: "100%",
+            },
+          },
         }}
         variant="persistent"
         anchor="left"
@@ -154,8 +165,6 @@ const NewPaletteForm = (props) => {
             <ChevronLeftIcon />
           </IconButton>
         </DrawerHeader>
-
-        <Divider />
 
         <Container>
           <Typography variant="h4" gutterBottom>

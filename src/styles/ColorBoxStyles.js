@@ -150,6 +150,9 @@ const getColorBoxStyles = (background) => {
     border: none;
     right: 0;
     bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #fff;
     width: 60px;
     height: 30px;

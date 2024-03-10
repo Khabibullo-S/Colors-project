@@ -19,7 +19,11 @@ export default {
       md: "991.98px",
       lg: "1199.98px",
     };
-    console.log(`@media (max-width: ${sizes[size]})`);
+    // If the input is a number, directly use it as the max-width
+    if (typeof size === "number") {
+      return `@media (max-width: ${size}px)`;
+    }
+    // Otherwise, look up the size in the predefined map
     return `@media (max-width: ${sizes[size]})`;
   },
 };

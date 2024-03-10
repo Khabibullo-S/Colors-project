@@ -13,6 +13,7 @@ import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import PaletteMetaForm from "./PaletteMetaForm";
 import { APPBAR_HEIGHT, DRAWER_WIDTH } from "./constants";
 import { AddToPhotos } from "@mui/icons-material";
+import sizes from "./styles/sizes";
 
 const drawerWidth = DRAWER_WIDTH;
 const appBarHeight = APPBAR_HEIGHT;
@@ -42,6 +43,13 @@ const NavBtns = styled("div")({
   marginRight: "1rem",
   "& .MuiButton-root": {
     margin: "0 0.5rem",
+    [sizes.down("md")]: {
+      margin: "0 0.2rem",
+      padding: "0.3rem",
+    },
+  },
+  [sizes.down("md")]: {
+    marginRight: "0.5rem",
   },
 });
 

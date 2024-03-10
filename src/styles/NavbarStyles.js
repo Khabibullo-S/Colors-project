@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import sizes from "./sizes";
 
 const getNavbarStyles = () => {
   const NavbarHeader = styled.header`
@@ -19,6 +20,12 @@ const getNavbarStyles = () => {
     a {
       text-decoration: none;
       color: black;
+    }
+    ${sizes.down("xs")} {
+      display: none;
+      .SingleColorPalette & {
+        display: flex;
+      }
     }
   `;
   const SliderDiv = styled.div`
@@ -42,6 +49,9 @@ const getNavbarStyles = () => {
       width: 13px;
       height: 13px;
       margin-top: -2.5px;
+    }
+    ${sizes.down("md")} {
+      width: 150px;
     }
   `;
   const SelectContainerDiv = styled.div`
