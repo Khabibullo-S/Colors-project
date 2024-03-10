@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MiniPalette from "./MiniPalette";
 import getPaletteListStyles from "./styles/PaletteListStyles";
@@ -19,13 +19,12 @@ import { blue, red } from "@mui/material/colors";
 const TRANSITION_TIME = 500;
 
 const PaletteList = ({ palettes, deletePalette }) => {
-  const navigate = useNavigate();
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [deletingId, setDeletingId] = useState("");
-  const openDialog = (id) => {
+  const openDialog = useCallback((id) => {
     setOpenDeleteDialog(true);
     setDeletingId(id);
-  };
+  }, []);
   const closeDialog = () => {
     setOpenDeleteDialog(false);
     setDeletingId("");
@@ -54,7 +53,10 @@ const PaletteList = ({ palettes, deletePalette }) => {
     []
   );
 
+  // console.log("RENDERING PALETTE LIST!");
+
   /* END OF STYLES */
+
   return (
     <RootDiv>
       <ContainerDiv>
@@ -70,14 +72,12 @@ const PaletteList = ({ palettes, deletePalette }) => {
               classNames="fade"
               timeout={TRANSITION_TIME}
             >
-              <div onClick={() => navigate(`/palette/${palette.id}`)}>
-                <MiniPalette
-                  {...palette}
-                  // deletePalette={deletePalette}
-                  openDialog={openDialog}
-                  key={palette.id}
-                />
-              </div>
+              <MiniPalette
+                {...palette}
+                // deletePalette={deletePalette}
+                openDialog={openDialog}
+                key={palette.id}
+              />
             </CSSTransition>
           ))}
         </TransitionGroupStyled>

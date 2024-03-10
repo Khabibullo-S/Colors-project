@@ -17,6 +17,8 @@ const getMiniPaletteStyles = () => {
     background-color: #dae1e4;
     border-radius: 5px;
     overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
   `;
   const TitleH5 = styled.h5`
     display: flex;
@@ -32,12 +34,10 @@ const getMiniPaletteStyles = () => {
     // font-size: 1.5rem;
   `;
   const MiniColorDiv = styled.div`
-    height: 25%;
-    width: 20%;
-    display: inline-block;
+    height: 100%;
+    width: 100%;
     margin: 0 auto;
     position: relative;
-    margin-bottom: -4px;
   `;
   const IconDiv = styled.div`
     position: absolute;

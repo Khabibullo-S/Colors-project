@@ -7,7 +7,7 @@ import Palette from "./Palette";
 import PaletteList from "./PaletteList";
 import SingleColorPalette from "./SingleColorPalette";
 import NewPaletteForm from "./NewPaletteForm";
-import "./App.css";
+import Page from "./Page";
 
 const App = () => {
   const location = useLocation();
@@ -48,37 +48,45 @@ const App = () => {
   return (
     // <div>
     <TransitionGroup>
-      <CSSTransition key={location.pathname} classNames="fade" timeout={500}>
+      <CSSTransition key={location.pathname} classNames="page" timeout={500}>
         <Routes location={location}>
           <Route
             exact
             path="/"
             element={
-              <div className="page">
+              <Page>
                 <PaletteList
                   palettes={palettes}
                   deletePalette={deletePalette}
                 />
-              </div>
+              </Page>
             }
           />
-          <Route exact path="/palette/:id" element={<PaletteWrapper />} />
+          <Route
+            exact
+            path="/palette/:id"
+            element={
+              <Page>
+                <PaletteWrapper />
+              </Page>
+            }
+          />
           <Route
             exact
             path="/palette/:paletteId/:colorId"
             element={
-              <div className="page">
+              <Page className="page">
                 <SingleColorPalette palettes={palettes} />
-              </div>
+              </Page>
             }
           />
           <Route
             exact
             path="/palette/new"
             element={
-              <div className="page">
+              <Page className="page">
                 <NewPaletteForm savePalette={savePalette} palettes={palettes} />
-              </div>
+              </Page>
             }
           />
         </Routes>

@@ -12,6 +12,7 @@ const getPaletteListStyles = () => {
     justify-content: center;
     background-color: #394bad;
     background-image: url(${bg});
+    font-family: Roboto, sans-serif;
   `;
 
   const ContainerDiv = styled.div`
