@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import sizes from "./sizes";
 
 const getPaletteListStyles = () => {
   const RootDiv = styled.div`
@@ -17,6 +18,12 @@ const getPaletteListStyles = () => {
     align-items: flex-start;
     flex-direction: column;
     flex-wrap: wrap;
+    ${sizes.down(1300)} {
+      width: 80%;
+    }
+    ${sizes.down("sm")} {
+      width: 75%;
+    }
   `;
 
   const Nav = styled.nav`
@@ -36,7 +43,14 @@ const getPaletteListStyles = () => {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 30%);
-    grid-gap: 5%;
+    grid-gap: 2.5rem;
+    ${sizes.down("md")} {
+      grid-template-columns: repeat(2, 50%);
+    }
+    ${sizes.down("xs")} {
+      grid-template-columns: repeat(1, 100%);
+      grid-gap: 2rem;
+    }
   `;
 
   return { RootDiv, ContainerDiv, Nav, PalettesDiv };
