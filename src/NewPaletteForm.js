@@ -15,6 +15,7 @@ import PaletteFormNav from "./PaletteFormNav";
 import { APPBAR_HEIGHT, DRAWER_WIDTH } from "./constants";
 import sizes from "./styles/sizes";
 import seedColors from "./seedColors";
+import useToggle from "./hooks/useToggle";
 
 const drawerWidth = DRAWER_WIDTH;
 const appBarHeight = APPBAR_HEIGHT;
@@ -71,20 +72,20 @@ const Container = styled("div")({
 const NewPaletteForm = (props) => {
   const { maxColors = 20 } = props;
   const navigate = useNavigate();
-  const [open, setOpen] = useState(true);
+  const [open, toggleOpen] = useToggle(true);
   const [colors, setColors] = useState(seedColors[0].colors);
 
   const [isPaletteFull, setIsPaletteFull] = useState(
     colors.length >= props.maxColors
   );
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
+  // const handleDrawerOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  // const handleDrawerClose = () => {
+  //   setOpen(false);
+  // };
 
   const addNewColor = (newColor) => {
     setColors([...colors, newColor]);
@@ -143,7 +144,7 @@ const NewPaletteForm = (props) => {
     <Box sx={{ display: "flex" }}>
       <PaletteFormNav
         open={open}
-        handleDrawerOpen={handleDrawerOpen}
+        handleDrawerOpen={toggleOpen}
         handlePaletteSubmit={handlePaletteSubmit}
       />
       <Drawer
@@ -166,7 +167,7 @@ const NewPaletteForm = (props) => {
         open={open}
       >
         <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={toggleOpen}>
             <ChevronLeftIcon />
           </IconButton>
         </DrawerHeader>

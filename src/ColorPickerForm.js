@@ -3,6 +3,7 @@ import { ChromePicker } from "react-color";
 import { Button } from "@mui/material";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { styled } from "@mui/material";
+import useInput from "./hooks/useInput";
 
 const Picker = styled(ChromePicker)({
   width: "100% !important",
@@ -24,11 +25,11 @@ const AddColor = styled(Button)({
 
 const ColorPickerForm = ({ isPaletteFull, colors, addNewColor }) => {
   const [currentColor, setCurrentColor] = useState("teal"); // Initialize with a default color
-  const [newColorName, setNewColorName] = useState("");
+  const [newColorName, changeNewColorName, resetNewColorName] = useInput("");
 
   const handleSubmit = () => {
     addNewColor({ color: currentColor, name: newColorName });
-    setNewColorName("");
+    resetNewColorName();
   };
 
   useEffect(() => {
@@ -66,7 +67,7 @@ const ColorPickerForm = ({ isPaletteFull, colors, addNewColor }) => {
           margin="normal"
           value={newColorName}
           label="Color Name"
-          onChange={(evt) => setNewColorName(evt.target.value)}
+          onChange={changeNewColorName}
           validators={["required", "isColorNameUnique", "isColorUnique"]}
           errorMessages={[
             "this field is required",

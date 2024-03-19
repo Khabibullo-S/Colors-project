@@ -14,15 +14,11 @@ import PaletteList from "./PaletteList";
 import SingleColorPalette from "./SingleColorPalette";
 import NewPaletteForm from "./NewPaletteForm";
 import Page from "./Page";
+import { useLocalStorage } from "./hooks/useStorage";
 
 const App = () => {
   const location = useLocation();
-  const savedPalettes = JSON.parse(window.localStorage.getItem("palettes"));
-  const [palettes, setPalettes] = useState(savedPalettes || seedColors);
-
-  useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to top on route change
-  }, [location]);
+  const [palettes, setPalettes] = useLocalStorage("palettes", seedColors);
 
   const deletePalette = (id) => {
     setPalettes(palettes.filter((palette) => palette.id !== id));
@@ -32,14 +28,9 @@ const App = () => {
     setPalettes([...palettes, newPalette]);
   };
 
-  const syncLocalStorage = () => {
-    // save palettes to local storage
-    window.localStorage.setItem("palettes", JSON.stringify(palettes));
-  };
-
   useEffect(() => {
-    syncLocalStorage();
-  }, [palettes]);
+    window.scrollTo(0, 0); // Scroll to top on route change
+  }, [location]);
 
   const PaletteWrapper = () => {
     const { id } = useParams(); // Now useParams has the context it needs

@@ -8,9 +8,10 @@ import DialogTitle from "@mui/material/DialogTitle";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
+import useInput from "./hooks/useInput";
 
 const PaletteMetaForm = ({ handlePaletteSubmit, stage, setFormStage }) => {
-  const [newPaletteName, setNewPaletteName] = useState("");
+  const [newPaletteName, changeNewPaletteName] = useInput("");
 
   const paletteNameFormRef = useRef(null);
 
@@ -59,7 +60,7 @@ const PaletteMetaForm = ({ handlePaletteSubmit, stage, setFormStage }) => {
             <TextValidator
               value={newPaletteName}
               label="Palette Name"
-              onChange={(evt) => setNewPaletteName(evt.target.value)}
+              onChange={changeNewPaletteName}
               validators={["required", "isPaletteNameUnique"]}
               errorMessages={["this field is required", "Name already used!"]}
               margin="normal"

@@ -2,15 +2,16 @@ import React, { useState, useMemo } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import getColorBoxStyles from "./styles/ColorBoxStyles";
+import useToggle from "./hooks/useToggle";
 
 const ColorBox = ({ name, background, id }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [copied, setCopied] = useState(false);
+  const [copied, toggleCopied] = useToggle(false);
 
   const changeCopyState = () => {
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    toggleCopied(true);
+    setTimeout(() => toggleCopied(false), 1500);
   };
 
   /* EMOTION STYLES */
