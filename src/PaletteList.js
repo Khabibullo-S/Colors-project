@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useContext, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import MiniPalette from "./MiniPalette";
 import getPaletteListStyles from "./styles/PaletteListStyles";
@@ -15,12 +15,19 @@ import {
 } from "@mui/material";
 import { Check, Close } from "@mui/icons-material";
 import { blue, red } from "@mui/material/colors";
+import PalettesContext, {
+  PalettesDispatchContext,
+} from "./contexts/Palettes.context";
 
 const TRANSITION_TIME = 500;
 
-const PaletteList = ({ palettes, deletePalette }) => {
+const PaletteList = ({ deletePalette }) => {
+  const palettes = useContext(PalettesContext);
+  const palettesDispatch = useContext(PalettesDispatchContext);
+
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [deletingId, setDeletingId] = useState("");
+
   const openDialog = useCallback((id) => {
     setOpenDeleteDialog(true);
     setDeletingId(id);
@@ -30,7 +37,7 @@ const PaletteList = ({ palettes, deletePalette }) => {
     setDeletingId("");
   };
   const handleDeletePalette = () => {
-    deletePalette(deletingId);
+    palettesDispatch({ type: "DELETE", id: deletingId });
     closeDialog();
   };
 
