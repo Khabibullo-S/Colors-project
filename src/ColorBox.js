@@ -7,11 +7,11 @@ import useToggle from "./hooks/useToggle";
 const ColorBox = ({ name, background, id }) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [copied, toggleCopied] = useToggle(false);
+  const [copied, setCopied] = useState(false);
 
   const changeCopyState = () => {
-    toggleCopied(true);
-    setTimeout(() => toggleCopied(false), 1500);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
   };
 
   /* EMOTION STYLES */

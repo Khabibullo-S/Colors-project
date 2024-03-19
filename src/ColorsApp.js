@@ -14,6 +14,7 @@ import SingleColorPalette from "./SingleColorPalette";
 import NewPaletteForm from "./NewPaletteForm";
 import Page from "./Page";
 import PalettesContext from "./contexts/Palettes.context";
+import NewPaletteFormProvider from "./contexts/NewPaletteForm.context";
 
 const ColorsApp = () => {
   const location = useLocation();
@@ -75,7 +76,9 @@ const ColorsApp = () => {
               path="/palette/new"
               element={
                 <Page className="page">
-                  <NewPaletteForm />
+                  <NewPaletteFormProvider>
+                    <NewPaletteForm />
+                  </NewPaletteFormProvider>
                 </Page>
               }
             />

@@ -19,6 +19,11 @@ import useToggle from "./hooks/useToggle";
 import PalettesContext, {
   PalettesDispatchContext,
 } from "./contexts/Palettes.context";
+import {
+  ColorsContext,
+  ColorsDispatchContext,
+  NewPaletteFormContext,
+} from "./contexts/NewPaletteForm.context";
 
 const drawerWidth = DRAWER_WIDTH;
 const appBarHeight = APPBAR_HEIGHT;
@@ -75,38 +80,16 @@ const Container = styled("div")({
 const NewPaletteForm = (props) => {
   const palettes = useContext(PalettesContext);
   const palettesDispatch = useContext(PalettesDispatchContext);
+  const colors = useContext(ColorsContext);
+  const colorsDispatch = useContext(ColorsDispatchContext);
 
   const { maxColors = 20 } = props;
   const navigate = useNavigate();
   const [open, toggleOpen] = useToggle(true);
-  const [colors, setColors] = useState(seedColors[0].colors);
 
   const [isPaletteFull, setIsPaletteFull] = useState(
     colors.length >= props.maxColors
   );
-
-  const addNewColor = (newColor) => {
-    setColors([...colors, newColor]);
-  };
-
-  const addRandomColor = () => {
-    const allColors = [...palettes, ...seedColors].map((p) => p.colors).flat();
-    let rand = Math.floor(Math.random() * allColors.length);
-    let randomColor = allColors[rand];
-    while (colors.some((color) => color.name === randomColor.name)) {
-      rand = Math.floor(Math.random() * allColors.length);
-      randomColor = allColors[rand];
-    }
-    setColors([...colors, randomColor]);
-  };
-
-  const removeColor = (colorName) => {
-    setColors(colors.filter((color) => color.name !== colorName));
-  };
-
-  const clearColors = () => {
-    setColors([]);
-  };
 
   const handlePaletteSubmit = (newPalette) => {
     newPalette.colors = colors;
@@ -116,7 +99,10 @@ const NewPaletteForm = (props) => {
   };
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
-    setColors((items) => arrayMove(items, oldIndex, newIndex));
+    colorsDispatch({
+      type: "SET",
+      newColors: arrayMove(colors, oldIndex, newIndex),
+    });
   };
 
   useEffect(() => {
@@ -173,34 +159,30 @@ const NewPaletteForm = (props) => {
             Design Your Palette
           </Typography>
           <Buttons>
-            <Button variant="contained" color="secondary" onClick={clearColors}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => colorsDispatch({ type: "CLEAR" })}
+            >
               Clear Palette
             </Button>
             <Button
               variant="contained"
               color="primary"
-              onClick={addRandomColor}
               disabled={isPaletteFull}
+              onClick={() =>
+                colorsDispatch({ type: "ADD_RANDOM", palettes: palettes })
+              }
             >
               Random Color
             </Button>
           </Buttons>
-          <ColorPickerForm
-            isPaletteFull={isPaletteFull}
-            colors={colors}
-            addNewColor={addNewColor}
-          />
+          <ColorPickerForm isPaletteFull={isPaletteFull} />
         </Container>
       </Drawer>
       <Main open={open}>
         <DrawerHeader />
-        <DraggableColorList
-          colors={colors}
-          removeColor={removeColor}
-          axis="xy"
-          onSortEnd={onSortEnd}
-          distance={10}
-        />
+        <DraggableColorList axis="xy" onSortEnd={onSortEnd} distance={10} />
       </Main>
     </Box>
   );

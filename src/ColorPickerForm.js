@@ -1,9 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { ChromePicker } from "react-color";
 import { Button } from "@mui/material";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import { styled } from "@mui/material";
 import useInput from "./hooks/useInput";
+import {
+  ColorsContext,
+  ColorsDispatchContext,
+} from "./contexts/NewPaletteForm.context";
 
 const Picker = styled(ChromePicker)({
   width: "100% !important",
@@ -23,12 +27,18 @@ const AddColor = styled(Button)({
   fontSize: "1.5rem",
 });
 
-const ColorPickerForm = ({ isPaletteFull, colors, addNewColor }) => {
+const ColorPickerForm = ({ isPaletteFull }) => {
+  const colors = useContext(ColorsContext);
+  const colorsDispatch = useContext(ColorsDispatchContext);
+
   const [currentColor, setCurrentColor] = useState("teal"); // Initialize with a default color
   const [newColorName, changeNewColorName, resetNewColorName] = useInput("");
 
   const handleSubmit = () => {
-    addNewColor({ color: currentColor, name: newColorName });
+    colorsDispatch({
+      type: "ADD",
+      newColor: { color: currentColor, name: newColorName },
+    });
     resetNewColorName();
   };
 
