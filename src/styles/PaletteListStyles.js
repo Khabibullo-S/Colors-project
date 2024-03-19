@@ -3,6 +3,7 @@ import sizes from "./sizes";
 import bg from "./confetti-doodles.svg";
 
 const getPaletteListStyles = () => {
+  console.log(sizes.down("xs"));
   const RootDiv = styled.div`
     min-height: 100vh;
     height: min-content;
@@ -50,10 +51,12 @@ const getPaletteListStyles = () => {
     display: grid;
     grid-template-columns: repeat(3, 30%);
     grid-gap: 2.5rem;
-    ${sizes.down("md")} {
+
+    // I don't know why but if I use $ {sizes.down("md")}" kind of approach it is not working here
+    @media (max-width: 991.98px) {
       grid-template-columns: repeat(2, 50%);
     }
-    ${sizes.down("xs")} {
+    @media (max-width: 575.98px) {
       grid-template-columns: repeat(1, 100%);
       grid-gap: 2rem;
     }
