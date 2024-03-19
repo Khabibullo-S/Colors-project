@@ -3,7 +3,6 @@ import sizes from "./sizes";
 import bg from "./confetti-doodles.svg";
 
 const getPaletteListStyles = () => {
-  console.log(sizes.down("xs"));
   const RootDiv = styled.div`
     min-height: 100vh;
     height: min-content;

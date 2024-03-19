@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { generatePalette } from "./colorHelpers";
 import ColorBox from "./ColorBox";
@@ -8,6 +8,7 @@ import getColorBoxStyles from "./styles/ColorBoxStyles";
 import styled from "@emotion/styled";
 import getPaletteStyles from "./styles/PaletteStyles";
 import sizes from "./styles/sizes";
+import PalettesContext from "./contexts/Palettes.context";
 
 const generateShades = (palette, colorToFilterBy) => {
   let shades = [];
@@ -23,7 +24,9 @@ const generateShades = (palette, colorToFilterBy) => {
   return shades.slice(1);
 };
 
-const SingleColorPalette = ({ palettes }) => {
+const SingleColorPalette = () => {
+  const palettes = useContext(PalettesContext);
+
   const { paletteId, colorId } = useParams();
   const palette = generatePalette(palettes.find((p) => p.id === paletteId));
   const shades = generateShades(palette, colorId);

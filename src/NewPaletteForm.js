@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -16,6 +16,9 @@ import { APPBAR_HEIGHT, DRAWER_WIDTH } from "./constants";
 import sizes from "./styles/sizes";
 import seedColors from "./seedColors";
 import useToggle from "./hooks/useToggle";
+import PalettesContext, {
+  PalettesDispatchContext,
+} from "./contexts/Palettes.context";
 
 const drawerWidth = DRAWER_WIDTH;
 const appBarHeight = APPBAR_HEIGHT;
@@ -70,6 +73,9 @@ const Container = styled("div")({
 });
 
 const NewPaletteForm = (props) => {
+  const palettes = useContext(PalettesContext);
+  const palettesDispatch = useContext(PalettesDispatchContext);
+
   const { maxColors = 20 } = props;
   const navigate = useNavigate();
   const [open, toggleOpen] = useToggle(true);
@@ -79,22 +85,12 @@ const NewPaletteForm = (props) => {
     colors.length >= props.maxColors
   );
 
-  // const handleDrawerOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleDrawerClose = () => {
-  //   setOpen(false);
-  // };
-
   const addNewColor = (newColor) => {
     setColors([...colors, newColor]);
   };
 
   const addRandomColor = () => {
-    const allColors = [...props.palettes, ...seedColors]
-      .map((p) => p.colors)
-      .flat();
+    const allColors = [...palettes, ...seedColors].map((p) => p.colors).flat();
     let rand = Math.floor(Math.random() * allColors.length);
     let randomColor = allColors[rand];
     while (colors.some((color) => color.name === randomColor.name)) {
@@ -115,7 +111,7 @@ const NewPaletteForm = (props) => {
   const handlePaletteSubmit = (newPalette) => {
     newPalette.colors = colors;
     newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, "-");
-    props.savePalette(newPalette);
+    palettesDispatch({ type: "SAVE", newPalette: newPalette });
     navigate("/");
   };
 
@@ -125,7 +121,7 @@ const NewPaletteForm = (props) => {
 
   useEffect(() => {
     ValidatorForm.addValidationRule("isPaletteNameUnique", (value) => {
-      return props.palettes.every(
+      return palettes.every(
         ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
       );
     });

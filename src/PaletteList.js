@@ -21,7 +21,7 @@ import PalettesContext, {
 
 const TRANSITION_TIME = 500;
 
-const PaletteList = ({ deletePalette }) => {
+const PaletteList = () => {
   const palettes = useContext(PalettesContext);
   const palettesDispatch = useContext(PalettesDispatchContext);
 
