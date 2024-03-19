@@ -1,13 +1,13 @@
 import React, { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "rc-slider";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Snackbar from "@mui/material/Snackbar";
 import CloseIcon from "@mui/icons-material/Close";
 import FormControl from "@mui/material/FormControl";
 import "rc-slider/assets/index.css";
-import { Icon, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import getNavbarStyles from "./styles/NavbarStyles";
 
 const Navbar = ({ level, setLevel, changeFormat }) => {

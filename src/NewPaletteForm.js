@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -14,7 +14,6 @@ import { arrayMove } from "react-sortable-hoc";
 import PaletteFormNav from "./PaletteFormNav";
 import { APPBAR_HEIGHT, DRAWER_WIDTH } from "./constants";
 import sizes from "./styles/sizes";
-import seedColors from "./seedColors";
 import useToggle from "./hooks/useToggle";
 import PalettesContext, {
   PalettesDispatchContext,
@@ -22,7 +21,6 @@ import PalettesContext, {
 import {
   ColorsContext,
   ColorsDispatchContext,
-  NewPaletteFormContext,
 } from "./contexts/NewPaletteForm.context";
 
 const drawerWidth = DRAWER_WIDTH;
@@ -78,13 +76,15 @@ const Container = styled("div")({
 });
 
 const NewPaletteForm = (props) => {
+  const navigate = useNavigate();
+
   const palettes = useContext(PalettesContext);
   const palettesDispatch = useContext(PalettesDispatchContext);
   const colors = useContext(ColorsContext);
   const colorsDispatch = useContext(ColorsDispatchContext);
 
   const { maxColors = 20 } = props;
-  const navigate = useNavigate();
+
   const [open, toggleOpen] = useToggle(true);
 
   const [isPaletteFull, setIsPaletteFull] = useState(
